@@ -1,36 +1,26 @@
-export type JobStatus = 'Draft' | 'Open' | 'Closed' | 'Cancelled' | number
+import type {
+  JobOpening,
+  JobOpeningStatus,
+  JobType,
+  PayType,
+  ShiftType,
+} from '@/types/job-opening.types'
 
-export type PayType = 'Hourly' | 'Daily' | 'Fixed' | 'Monthly' | number
-
-export type JobScheduleType =
-  | 'SpecificDates'
-  | 'DateRange'
-  | 'RecurringWeekly'
-  | 'LongTerm'
-  | number
-
-export type Job = {
-  id: string
-  businessProfileId: string
-  title: string
-  description: string
-  role: string
-  location: string
-  startsAt: string
-  endsAt: string | null
-  requiredWorkersCount: number
-  payAmount: number
-  payType: PayType
-  scheduleType: JobScheduleType
-  status: JobStatus
-  createdAt: string
-}
+export type Job = JobOpening
+export type JobStatus = JobOpeningStatus
+export type { JobType, PayType, ShiftType }
 
 export type JobFilters = {
   search: string
-  role: string
-  payType: PayType | 'Any'
+  jobType: JobType | 'Any'
+  shiftType: ShiftType | 'Any'
+  onDate: string
 }
+
+export type JobQueryFilters = Pick<
+  JobFilters,
+  'jobType' | 'shiftType' | 'onDate'
+>
 
 export type JobsResponse = {
   items: Job[]

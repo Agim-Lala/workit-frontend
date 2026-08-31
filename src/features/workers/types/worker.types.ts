@@ -3,6 +3,10 @@ export type WorkerProfile = {
   userId: string
   firstName: string
   lastName: string
-  skills: string[]
-  experience: string[]
+  phone: string | null
+  location: string
+}
+
+export type UpdateWorkerLocationResponse = {
+  location: string
 }

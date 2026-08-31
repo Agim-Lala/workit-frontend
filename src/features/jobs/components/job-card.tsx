@@ -1,64 +1,67 @@
-import { format } from 'date-fns'
-import { ArrowRight, MapPin, UsersRound } from 'lucide-react'
+import { ArrowRight, CalendarDays, Clock3, MapPin } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
 import type { Job } from '../types/job.types'
-import { formatJobStatus, formatPayType } from '../utils/job-formatters'
+import {
+  formatJobDateRange,
+  formatJobShift,
+  formatJobStatus,
+  formatJobType,
+  formatPayType,
+} from '../utils/job-formatters'
 
-type JobCardProps = {
-  job: Job
-}
+type JobCardProps = { job: Job }
 
 export function JobCard({ job }: JobCardProps) {
-  const startsAt = format(new Date(job.startsAt), 'MMM d, HH:mm')
-
   return (
-    <article className="rounded-md border border-border bg-white p-5 shadow-sm">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
+    <article className="courtyard-surface group relative overflow-hidden border border-transparent transition-[border-color,transform] hover:-translate-y-0.5 hover:border-primary/35">
+      <div className="grid lg:grid-cols-[1.2fr_1fr_auto]">
+        <div className="p-5 sm:p-6">
           <div className="flex flex-wrap gap-2">
-            <Badge>{job.role}</Badge>
+            <Badge className="border-primary/35 bg-primary/10 text-primary">{job.role}</Badge>
             <Badge>{formatJobStatus(job.status)}</Badge>
+            <Badge>{formatJobType(job.jobType)}</Badge>
           </div>
-          <h2 className="mt-3 text-lg font-semibold text-foreground">
-            {job.title}
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            {job.description}
-          </p>
+          <h2 className="display-type mt-4 text-3xl font-bold leading-none sm:text-4xl">{job.title}</h2>
+          <p className="mt-3 max-w-[68ch] text-sm leading-6 text-muted-foreground">{job.description}</p>
         </div>
-        <div className="text-left sm:text-right">
-          <p className="text-lg font-semibold text-foreground">
-            {job.payAmount}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {formatPayType(job.payType)}
-          </p>
-        </div>
-      </div>
 
-      <div className="mt-5 flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-2">
-            <MapPin aria-hidden="true" size={16} />
-            {job.location}
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <UsersRound aria-hidden="true" size={16} />
-            {job.requiredWorkersCount} needed
-          </span>
-          <span>{startsAt}</span>
+        <dl className="grid grid-cols-1 divide-y divide-border border-t border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-1 lg:divide-x-0 lg:divide-y lg:border-l lg:border-t-0">
+          <JobFact icon={MapPin} label="Location" value={job.location} />
+          <JobFact icon={CalendarDays} label="Dates" value={formatJobDateRange(job.startDate, job.endDate)} />
+          <JobFact icon={Clock3} label="Shift" value={formatJobShift(job)} />
+        </dl>
+
+        <div className="flex min-w-48 flex-col justify-between border-t border-border bg-secondary/55 p-5 lg:border-l lg:border-t-0">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">Pay</p>
+            <p className="tabular-nums display-type mt-1 text-4xl font-bold leading-none">{job.payAmount.toLocaleString()}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{formatPayType(job.payType)}</p>
+          </div>
+          <Button asChild className="mt-6 justify-between" size="sm">
+            <Link to={`/jobs/${job.id}`}>
+              View details
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </Button>
         </div>
-        <Button asChild size="sm" variant="secondary">
-          <Link to={`/jobs/${job.id}`}>
-            View
-            <ArrowRight aria-hidden="true" size={16} />
-          </Link>
-        </Button>
       </div>
     </article>
+  )
+}
+
+function JobFact({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
+  return (
+    <div className="p-4">
+      <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+        <Icon aria-hidden="true" size={15} />
+        {label}
+      </dt>
+      <dd className="tabular-nums mt-2 text-sm font-semibold text-foreground">{value}</dd>
+    </div>
   )
 }

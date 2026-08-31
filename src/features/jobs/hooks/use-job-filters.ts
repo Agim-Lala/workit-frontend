@@ -4,15 +4,21 @@ import type { JobFilters } from '../types/job.types'
 
 type JobFilterState = JobFilters & {
   setSearch: (search: string) => void
-  setRole: (role: string) => void
-  setPayType: (payType: JobFilters['payType']) => void
+  setJobType: (jobType: JobFilters['jobType']) => void
+  setShiftType: (shiftType: JobFilters['shiftType']) => void
+  setOnDate: (onDate: string) => void
+  clearFilters: () => void
 }
 
 export const useJobFilters = create<JobFilterState>((set) => ({
   search: '',
-  role: 'All',
-  payType: 'Any',
+  jobType: 'Any',
+  shiftType: 'Any',
+  onDate: '',
   setSearch: (search) => set({ search }),
-  setRole: (role) => set({ role }),
-  setPayType: (payType) => set({ payType }),
+  setJobType: (jobType) => set({ jobType }),
+  setShiftType: (shiftType) => set({ shiftType }),
+  setOnDate: (onDate) => set({ onDate }),
+  clearFilters: () =>
+    set({ search: '', jobType: 'Any', shiftType: 'Any', onDate: '' }),
 }))

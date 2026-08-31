@@ -4,8 +4,14 @@ import { getJobs } from '../api/get-jobs'
 import type { JobFilters } from '../types/job.types'
 
 export function useJobs(filters: JobFilters) {
+  const queryFilters = {
+    jobType: filters.jobType,
+    shiftType: filters.shiftType,
+    onDate: filters.onDate,
+  }
+
   return useQuery({
-    queryKey: ['jobs', filters],
-    queryFn: getJobs,
+    queryKey: ['jobs', queryFilters],
+    queryFn: () => getJobs(queryFilters),
   })
 }

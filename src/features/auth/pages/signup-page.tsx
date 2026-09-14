@@ -6,9 +6,11 @@ import { useForm, useWatch } from 'react-hook-form'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { WorkitBrand } from '@/components/brand/workit-brand'
+import { LanguageToggle } from '@/components/i18n/language-toggle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { useT, type TranslationKey } from '@/i18n'
 import { cn } from '@/lib/utils'
 
 import { registerBusiness, registerWorker } from '../api/register'
@@ -19,19 +21,25 @@ import { setAuthSession } from '../utils/auth-token'
 const accountTypes = [
   {
     value: 'worker',
-    title: 'Worker',
-    description: 'Find shifts, apply quickly, and manage your profile.',
+    titleKey: 'auth.signup.workerName',
+    descriptionKey: 'auth.signup.workerDesc',
     icon: UserRound,
   },
   {
     value: 'business',
-    title: 'Business',
-    description: 'Post openings, review applicants, and fill shifts.',
+    titleKey: 'auth.signup.businessName',
+    descriptionKey: 'auth.signup.businessDesc',
     icon: BriefcaseBusiness,
   },
-] as const
+] as const satisfies readonly {
+  value: 'worker' | 'business'
+  titleKey: TranslationKey
+  descriptionKey: TranslationKey
+  icon: typeof UserRound
+}[]
 
 export function SignupPage() {
+  const t = useT()
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
@@ -91,27 +99,29 @@ export function SignupPage() {
         { replace: true },
       )
     } catch {
-      setSubmitError('Unable to create that account. Try another email.')
+      setSubmitError(t('auth.signup.error'))
     }
   }
 
   return (
     <main className="min-h-screen bg-background px-4 py-5 text-foreground sm:px-8 lg:px-12">
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between border-b border-border pb-5">
-        <Link aria-label="Workit home" className="focus-ring" to="/">
+      <header className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 border-b border-border pb-5">
+        <Link aria-label={t('nav.workitHome')} className="focus-ring" to="/">
           <WorkitBrand />
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </header>
       <section className="mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-7xl items-center gap-10 py-10 lg:grid-cols-[0.82fr_1.18fr] lg:py-14">
         <div className="space-y-8">
           <div>
             <h1 className="display-type max-w-[10ch] text-5xl font-bold leading-[0.9] text-foreground sm:text-7xl">
-              Choose how you use Workit.
+              {t('auth.signup.title')}
             </h1>
             <p className="mt-6 max-w-md text-base leading-7 text-muted-foreground">
-              Choose worker or business, enter the basics, and get straight into
-              the workflows that match your role.
+              {t('auth.signup.subtitle')}
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -148,17 +158,17 @@ export function SignupPage() {
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center justify-between gap-3 text-base font-semibold text-foreground">
-                      {type.title}
+                      {t(type.titleKey)}
                       {isSelected ? (
                         <Check
-                          aria-label="Selected"
+                          aria-label={t('auth.signup.selected')}
                             className="text-primary"
                           size={18}
                         />
                       ) : null}
                     </span>
                     <span className="mt-1 block text-sm leading-6 text-muted-foreground">
-                      {type.description}
+                      {t(type.descriptionKey)}
                     </span>
                   </span>
                 </button>
@@ -174,17 +184,17 @@ export function SignupPage() {
           <div className="border-b border-border pb-5">
             <h2 className="display-type text-3xl font-bold text-foreground">
               {accountType === 'worker'
-                ? 'Worker sign up'
-                : 'Business sign up'}
+                ? t('auth.signup.workerHeading')
+                : t('auth.signup.businessHeading')}
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Already have an account?{' '}
+              {t('auth.signup.haveAccount')}{' '}
               <Link
                 className="font-semibold text-primary underline decoration-2 underline-offset-4"
                 state={redirectState}
                 to="/login"
               >
-                Sign in
+                {t('common.signIn')}
               </Link>
             </p>
           </div>
@@ -194,7 +204,7 @@ export function SignupPage() {
               <>
                 <FieldError errorId="signup-first-name-error" message={errors.firstName?.message}>
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-first-name">
-                    First name
+                    {t('auth.field.firstName')}
                     <Input
                       aria-describedby={errors.firstName ? 'signup-first-name-error' : undefined}
                       aria-invalid={Boolean(errors.firstName)}
@@ -207,7 +217,7 @@ export function SignupPage() {
                 </FieldError>
                 <FieldError errorId="signup-last-name-error" message={errors.lastName?.message}>
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-last-name">
-                    Last name
+                    {t('auth.field.lastName')}
                     <Input
                       aria-describedby={errors.lastName ? 'signup-last-name-error' : undefined}
                       aria-invalid={Boolean(errors.lastName)}
@@ -224,7 +234,7 @@ export function SignupPage() {
                   message={errors.location?.message}
                 >
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-location">
-                    City or area
+                    {t('auth.field.cityArea')}
                     <span className="relative mt-2 block">
                       <MapPin
                         aria-hidden="true"
@@ -243,7 +253,7 @@ export function SignupPage() {
                     </span>
                   </label>
                   <p className="mt-2 text-xs leading-5 text-muted-foreground" id="signup-location-hint">
-                    Workit uses this to show openings whose work location includes your city or area.
+                    {t('auth.signup.locationHint')}
                   </p>
                 </FieldError>
               </>
@@ -255,7 +265,7 @@ export function SignupPage() {
                   message={errors.businessName?.message}
                 >
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-business-name">
-                    Business name
+                    {t('auth.field.businessName')}
                     <Input
                       aria-describedby={errors.businessName ? 'signup-business-name-error' : undefined}
                       aria-invalid={Boolean(errors.businessName)}
@@ -272,7 +282,7 @@ export function SignupPage() {
                   message={errors.fullAddress?.message}
                 >
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-address">
-                    Business address
+                    {t('auth.field.businessAddress')}
                     <Input
                       aria-describedby={errors.fullAddress ? 'signup-address-error' : undefined}
                       aria-invalid={Boolean(errors.fullAddress)}
@@ -288,7 +298,7 @@ export function SignupPage() {
 
             <FieldError errorId="signup-email-error" message={errors.email?.message}>
               <label className="text-sm font-medium text-foreground" htmlFor="signup-email">
-                Email
+                {t('auth.field.email')}
                 <Input
                   aria-describedby={errors.email ? 'signup-email-error' : undefined}
                   aria-invalid={Boolean(errors.email)}
@@ -302,7 +312,7 @@ export function SignupPage() {
             </FieldError>
             <FieldError errorId="signup-phone-error" message={errors.phone?.message}>
               <label className="text-sm font-medium text-foreground" htmlFor="signup-phone">
-                Phone
+                {t('auth.field.phone')}
                 <Input
                   aria-describedby={errors.phone ? 'signup-phone-error' : undefined}
                   aria-invalid={Boolean(errors.phone)}
@@ -320,13 +330,13 @@ export function SignupPage() {
               message={errors.password?.message}
             >
               <label className="text-sm font-medium text-foreground" htmlFor="signup-password">
-                Password
+                {t('auth.field.password')}
                 <Input
                   aria-describedby={errors.password ? 'signup-password-error' : undefined}
                   aria-invalid={Boolean(errors.password)}
                   className="mt-2"
                   id="signup-password"
-                  placeholder="Minimum 8 characters"
+                  placeholder={t('auth.placeholder.password')}
                   type="password"
                   {...register('password')}
                 />
@@ -339,7 +349,7 @@ export function SignupPage() {
           ) : null}
 
           <Button className="mt-7 w-full justify-between" disabled={isSubmitting} type="submit">
-            {isSubmitting ? 'Creating account…' : 'Create account'}
+            {isSubmitting ? t('auth.signup.submitting') : t('auth.signup.submit')}
             <ArrowRight aria-hidden="true" size={18} />
           </Button>
         </form>

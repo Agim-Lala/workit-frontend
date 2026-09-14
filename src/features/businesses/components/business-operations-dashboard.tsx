@@ -188,7 +188,7 @@ function WeeklyPlanner({ openings }: BusinessOperationsDashboardProps) {
   })
 
   return (
-    <section className="courtyard-lift courtyard-peach courtyard-surface paper-texture flex flex-col justify-between overflow-hidden p-6 sm:p-8 lg:p-10" aria-labelledby="weekly-planner-title">
+    <section className="courtyard-lift courtyard-peach courtyard-surface flex flex-col justify-between overflow-hidden p-6 sm:p-8 lg:p-10" aria-labelledby="weekly-planner-title">
       <div className="flex items-start justify-between gap-5">
         <div>
           <h2 className="display-type text-4xl font-bold" id="weekly-planner-title">This week</h2>

@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import { env } from '@/config/env'
 import { getAccessToken } from '@/features/auth/utils/auth-token'
+import { getLanguage } from '@/i18n'
 
 export const apiClient = axios.create({
   baseURL: env.apiUrl,
@@ -21,6 +22,8 @@ apiClient.interceptors.request.use((config) => {
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
   }
+
+  config.headers['Accept-Language'] = getLanguage()
 
   return config
 })

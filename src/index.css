@@ -3,27 +3,30 @@
 @theme {
   --font-sans: "Barlow", ui-sans-serif, sans-serif;
   --font-display: "Barlow Condensed", "Barlow", ui-sans-serif, sans-serif;
-  --color-border: #dcc4b1;
-  --color-input: #caaa96;
-  --color-ring: #a53f2a;
-  --color-background: #f5e9d8;
-  --color-foreground: #39242c;
-  --color-primary: #a9412b;
-  --color-primary-foreground: #fffaf3;
-  --color-secondary: #ead7c4;
-  --color-secondary-foreground: #39242c;
-  --color-muted: #eadbca;
-  --color-muted-foreground: #6f554f;
-  --color-accent: #66705a;
-  --color-accent-foreground: #fffaf3;
-  --color-sun: #e6a43b;
-  --color-sun-foreground: #39242c;
-  --color-peach: #f2c9b5;
-  --color-olive: #66705a;
-  --color-destructive: #a72f35;
-  --color-destructive-foreground: #fffaf3;
-  --color-surface: #fffaf2;
-  --color-surface-strong: #39242c;
+  /* Logo palette, three colors max: neutral (paper + navy ink), the logo's
+     blue, and the logo's orange. No black anywhere — panels that need a
+     strong fill use the blue or the orange instead of a dark neutral. */
+  --color-border: #e4e4e7;
+  --color-input: #d4d4d8;
+  --color-ring: #2563eb;
+  --color-background: #fafafa;
+  --color-foreground: #1e293b;
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f4f4f5;
+  --color-secondary-foreground: #1e293b;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #52525b;
+  --color-accent: #c2410c;
+  --color-accent-foreground: #fff7ed;
+  --color-sun: #2563eb;
+  --color-sun-foreground: #ffffff;
+  --color-peach: #fdead9;
+  --color-olive: #52525b;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-strong: #1e293b;
 }
 
 * {
@@ -41,27 +44,27 @@
 }
 
 :root.dark {
-  --color-border: #715a55;
-  --color-input: #8a7067;
-  --color-ring: #ef987c;
-  --color-background: #2c2023;
-  --color-foreground: #fff3e5;
-  --color-primary: #e77d5e;
-  --color-primary-foreground: #27191c;
-  --color-secondary: #503a3d;
-  --color-secondary-foreground: #fff3e5;
-  --color-muted: #493639;
-  --color-muted-foreground: #d9c5bb;
-  --color-accent: #9ea789;
-  --color-accent-foreground: #21181b;
-  --color-sun: #efbd5d;
-  --color-sun-foreground: #2c2023;
-  --color-peach: #68463f;
-  --color-olive: #78816a;
-  --color-destructive: #ff9297;
-  --color-destructive-foreground: #2c1115;
-  --color-surface: #3a2a2e;
-  --color-surface-strong: #fff3e5;
+  --color-border: #334155;
+  --color-input: #475569;
+  --color-ring: #3b82f6;
+  --color-background: #0f172a;
+  --color-foreground: #f8fafc;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #0b1220;
+  --color-secondary: #1e293b;
+  --color-secondary-foreground: #f8fafc;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #9a3412;
+  --color-accent-foreground: #fff7ed;
+  --color-sun: #3b82f6;
+  --color-sun-foreground: #0b1220;
+  --color-peach: #3a2412;
+  --color-olive: #94a3b8;
+  --color-destructive: #f87171;
+  --color-destructive-foreground: #450a0a;
+  --color-surface: #1e293b;
+  --color-surface-strong: #f8fafc;
 }
 
 html {
@@ -83,8 +86,8 @@ body {
   }
 
   ::selection {
-    background: var(--color-sun);
-    color: var(--color-sun-foreground);
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
   }
 }
 
@@ -130,29 +133,9 @@ select {
 }
 
 .courtyard-lift {
-  box-shadow: 0 18px 46px -28px color-mix(in srgb, var(--color-foreground) 38%, transparent);
-}
-
-.paper-texture {
-  isolation: isolate;
-  position: relative;
-}
-
-.paper-texture::before {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  border-radius: inherit;
-  background: url("./assets/warm-courtyard-paper.jpg") center / 512px 512px repeat;
-  content: "";
-  mix-blend-mode: multiply;
-  opacity: 0.12;
-  pointer-events: none;
-}
-
-.paper-texture > * {
-  position: relative;
-  z-index: 1;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-foreground) 6%, transparent),
+    0 12px 32px -16px color-mix(in srgb, var(--color-foreground) 16%, transparent);
 }
 
 .courtyard-reveal {

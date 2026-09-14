@@ -113,7 +113,7 @@ export function BusinessLaunchPage() {
 
       <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
         <form
-          className="courtyard-surface paper-texture p-5 sm:p-8 lg:p-10"
+          className="courtyard-surface p-5 sm:p-8 lg:p-10"
           id="new-job-opening"
           onSubmit={handleSubmit(submitJobOpening)}
         >

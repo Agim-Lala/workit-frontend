@@ -5,9 +5,11 @@ import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { WorkitBrand } from '@/components/brand/workit-brand'
+import { LanguageToggle } from '@/components/i18n/language-toggle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { useT } from '@/i18n'
 
 import { login } from '../api/login'
 import type { AuthRedirectState } from '../components/protected-route'
@@ -16,6 +18,7 @@ import { setAuthSession } from '../utils/auth-token'
 import { getDefaultAuthenticatedPath } from '../utils/user-role'
 
 export function LoginPage() {
+  const t = useT()
   const navigate = useNavigate()
   const location = useLocation()
   const redirectState = location.state as AuthRedirectState | null
@@ -44,58 +47,61 @@ export function LoginPage() {
         { replace: true },
       )
     } catch {
-      setSubmitError('Unable to sign in with those credentials.')
+      setSubmitError(t('auth.login.error'))
     }
   }
 
   return (
     <main className="grid min-h-screen bg-background text-foreground lg:grid-cols-[0.82fr_1.18fr]">
       <section className="hidden min-h-screen flex-col justify-between bg-accent p-12 text-accent-foreground lg:flex xl:p-16">
-        <Link aria-label="Workit home" className="focus-ring w-fit" to="/">
+        <Link aria-label={t('nav.workitHome')} className="focus-ring w-fit" to="/">
           <WorkitBrand inverse />
         </Link>
         <div>
           <h2 className="display-type max-w-[8ch] text-7xl font-bold leading-[0.88]">
-            Pick up where work left off.
+            {t('auth.login.brandTitle')}
           </h2>
           <p className="mt-7 max-w-[44ch] text-lg leading-8 text-accent-foreground">
-            One sign-in opens the workspace that matches your role—job discovery for workers and job publishing for businesses.
+            {t('auth.login.brandBody')}
           </p>
         </div>
         <p className="border-t border-accent-foreground/25 pt-5 text-sm text-accent-foreground">
-          Role, place, schedule, and pay stay visible throughout Workit.
+          {t('auth.login.brandFoot')}
         </p>
       </section>
 
       <section className="flex min-h-screen flex-col px-5 py-5 sm:px-10 lg:px-14 xl:px-20">
-        <div className="flex items-center justify-between">
-          <Link aria-label="Workit home" className="focus-ring lg:hidden" to="/">
+        <div className="flex items-center justify-between gap-3">
+          <Link aria-label={t('nav.workitHome')} className="focus-ring lg:hidden" to="/">
             <WorkitBrand />
           </Link>
           <Link className="focus-ring hidden items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground lg:inline-flex" to="/">
             <ArrowLeft aria-hidden="true" size={17} />
-            Back to Workit
+            {t('auth.backToWorkit')}
           </Link>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
 
         <div className="my-auto w-full max-w-xl py-12">
           <h1 className="display-type text-5xl font-bold leading-none sm:text-6xl">
-            Sign in.
+            {t('auth.login.title')}
           </h1>
           <p className="mt-4 max-w-[54ch] text-base leading-7 text-muted-foreground">
-            Enter your details to continue to the worker or business workspace.
+            {t('auth.login.subtitle')}
           </p>
           <p className="mt-4 text-sm text-muted-foreground">
-            New to Workit?{' '}
+            {t('auth.login.newHere')}{' '}
             <Link className="font-semibold text-primary underline decoration-2 underline-offset-4" state={redirectState} to="/signup">
-              Create an account
+              {t('common.createAccount')}
             </Link>
           </p>
 
           <form className="courtyard-surface mt-8 space-y-5 p-6 sm:p-8" onSubmit={handleSubmit(submitLogin)}>
           <label className="block text-sm font-medium text-foreground" htmlFor="login-email">
-            Email
+            {t('auth.field.email')}
             <Input
               aria-describedby={errors.email ? 'login-email-error' : undefined}
               aria-invalid={Boolean(errors.email)}
@@ -111,13 +117,13 @@ export function LoginPage() {
           ) : null}
 
           <label className="block text-sm font-medium text-foreground" htmlFor="login-password">
-            Password
+            {t('auth.field.password')}
             <Input
               aria-describedby={errors.password ? 'login-password-error' : undefined}
               aria-invalid={Boolean(errors.password)}
               className="mt-2"
               id="login-password"
-              placeholder="Minimum 8 characters"
+              placeholder={t('auth.placeholder.password')}
               type="password"
               {...register('password')}
             />
@@ -133,7 +139,7 @@ export function LoginPage() {
 
           <Button className="w-full justify-between" disabled={isSubmitting} type="submit">
             <LogIn aria-hidden="true" size={18} />
-            <span className="flex-1 text-left">{isSubmitting ? 'Signing in…' : 'Sign in'}</span>
+            <span className="flex-1 text-left">{isSubmitting ? t('auth.login.submitting') : t('auth.login.submit')}</span>
             <ArrowRight aria-hidden="true" size={18} />
           </Button>
           </form>

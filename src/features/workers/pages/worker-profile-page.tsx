@@ -126,7 +126,7 @@ export function WorkerProfilePage() {
             <div className="mt-6 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
               <div aria-live="polite" className="min-h-6 text-sm">
                 {locationMutation.isSuccess ? (
-                  <span className="inline-flex items-center gap-2 font-semibold text-accent">
+                  <span className="inline-flex items-center gap-2 font-semibold text-primary">
                     <CheckCircle2 aria-hidden="true" size={17} />
                     Location saved. Your jobs have been refreshed.
                   </span>

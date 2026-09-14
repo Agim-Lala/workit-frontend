@@ -8,7 +8,9 @@ import { ApplicationsPage } from '@/features/applications/pages/applications-pag
 import { BusinessDashboardPage } from '@/features/businesses/pages/business-dashboard-page'
 import { BusinessLaunchPage } from '@/features/businesses/pages/business-launch-page'
 import { BusinessOpeningsPage } from '@/features/businesses/pages/business-openings-page'
+import { ForBusinessesPage } from '@/features/home/pages/for-businesses-page'
 import { HomePage } from '@/features/home/pages/home-page'
+import { HowItWorksPage } from '@/features/home/pages/how-it-works-page'
 import { JobCalendarPage } from '@/features/jobs/pages/job-calendar-page'
 import { JobDayPage } from '@/features/jobs/pages/job-day-page'
 import { JobsPage } from '@/features/jobs/pages/jobs-page'
@@ -21,6 +23,8 @@ export const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'how-it-works', element: <HowItWorksPage /> },
+      { path: 'for-businesses', element: <ForBusinessesPage /> },
       {
         element: <ProtectedRoute allowedRoles={['Worker']} />,
         children: [

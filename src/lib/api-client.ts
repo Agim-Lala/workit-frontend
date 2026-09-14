@@ -25,5 +25,11 @@ apiClient.interceptors.request.use((config) => {
 
   config.headers['Accept-Language'] = getLanguage()
 
+  // Let the browser set the multipart boundary itself for file uploads — the instance's
+  // default application/json header would otherwise stick and the API rejects it (415).
+  if (config.data instanceof FormData) {
+    delete config.headers['Content-Type']
+  }
+
   return config
 })

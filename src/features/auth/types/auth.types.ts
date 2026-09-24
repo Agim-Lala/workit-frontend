@@ -2,12 +2,17 @@ export type UserRoleName = 'Worker' | 'Business' | 'Admin'
 export type UserRoleCode = 0 | 1 | 2
 export type UserRole = UserRoleName | UserRoleCode
 
+// The API serializes enums as numbers; names are accepted too, matching UserRole.
+export type EmailConfirmationStatusName = 'Pending' | 'Confirmed' | 'Expired'
+export type EmailConfirmationStatus = EmailConfirmationStatusName | 0 | 1 | 2
+
 export type AuthUser = {
   id: string
   email: string
   role: UserRole
   roleLabel: string
-  emailConfirmed: boolean
+  emailConfirmationStatus: EmailConfirmationStatus
+  emailConfirmationStatusLabel: string
 }
 
 export type LoginCredentials = {
@@ -29,8 +34,9 @@ export type RegisterBusinessRequest = {
   password: string
   businessName: string
   fullAddress: string
-  latitude: number
-  longitude: number
+  // Omit both to let the API geocode fullAddress.
+  latitude?: number
+  longitude?: number
   nipt: string
   phone?: string
 }

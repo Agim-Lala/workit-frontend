@@ -29,6 +29,7 @@ import { downloadWorkerCv, uploadWorkerCv } from '../api/upload-worker-cv'
 import { uploadWorkerPhoto } from '../api/upload-worker-photo'
 import { updateWorkerLocation } from '../api/update-worker-location'
 import { updateWorkerPreferences } from '../api/update-worker-preferences'
+import { WorkerReviewsCard } from '../components/worker-reviews-card'
 import { useWorkerPhotoUrl } from '../hooks/use-worker-photo'
 import { useWorkerProfile, workerProfileQueryKey } from '../hooks/use-worker-profile'
 import {
@@ -107,6 +108,7 @@ export function WorkerProfilePage() {
         {profile ? <DocumentsCard profile={profile} /> : null}
         {profile ? <PreferencesCard profile={profile} /> : null}
         {profile ? <VerificationCard profile={profile} /> : null}
+        {profile ? <WorkerReviewsCard workerProfileId={profile.id} /> : null}
       </div>
     </section>
   )

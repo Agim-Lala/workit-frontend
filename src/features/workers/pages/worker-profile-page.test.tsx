@@ -23,6 +23,18 @@ vi.mock('../api/get-worker-profile', () => ({ getWorkerProfile: mockGetWorkerPro
 vi.mock('../api/update-worker-location', () => ({ updateWorkerLocation: mockUpdateWorkerLocation }))
 vi.mock('../api/update-worker-preferences', () => ({ updateWorkerPreferences: mockUpdateWorkerPreferences }))
 vi.mock('../api/start-worker-verification', () => ({ startWorkerVerification: mockStartWorkerVerification }))
+vi.mock('../api/get-worker-reviews', () => ({
+  getWorkerReviews: vi.fn().mockResolvedValue({
+    items: [],
+    averageRating: null,
+    page: 1,
+    pageSize: 10,
+    totalCount: 0,
+    totalPages: 0,
+    hasPreviousPage: false,
+    hasNextPage: false,
+  }),
+}))
 
 beforeEach(() => {
   mockGetWorkerProfile.mockResolvedValue({

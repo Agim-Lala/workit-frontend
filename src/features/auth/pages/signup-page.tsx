@@ -14,6 +14,7 @@ import { getApiError, isRateLimited, toFieldName } from '@/lib/api-error'
 import { cn } from '@/lib/utils'
 
 import { registerBusiness, registerWorker } from '../api/register'
+import { AddressAutocomplete } from '../components/address-autocomplete'
 import type { AuthRedirectState } from '../components/protected-route'
 import { signupSchema, type SignupFormValues } from '../schemas/auth.schema'
 import { setAuthSession } from '../utils/auth-token'
@@ -64,10 +65,15 @@ export function SignupPage() {
       location: '',
       businessName: '',
       fullAddress: '',
+      latitude: undefined,
+      longitude: undefined,
       nipt: '',
     },
   })
   const accountType = useWatch({ control, name: 'accountType' })
+  const fullAddress = useWatch({ control, name: 'fullAddress' }) ?? ''
+  const addressCoordinates = useWatch({ control, name: ['latitude', 'longitude'] })
+  const hasPickedAddress = addressCoordinates.every((value) => value !== undefined)
 
   async function submitSignup(values: SignupFormValues) {
     setSubmitError(null)
@@ -89,8 +95,9 @@ export function SignupPage() {
               password: values.password,
               businessName: values.businessName ?? '',
               fullAddress: values.fullAddress ?? '',
-              latitude: 0,
-              longitude: 0,
+              // Without a picked location the API geocodes fullAddress itself.
+              latitude: values.latitude,
+              longitude: values.longitude,
               nipt: values.nipt?.trim() ?? '',
               phone,
             })
@@ -301,15 +308,29 @@ export function SignupPage() {
                 >
                   <label className="text-sm font-medium text-foreground" htmlFor="signup-address">
                     {t('auth.field.businessAddress')}
-                    <Input
-                      aria-describedby={errors.fullAddress ? 'signup-address-error' : undefined}
-                      aria-invalid={Boolean(errors.fullAddress)}
-                      className="mt-2"
-                      id="signup-address"
-                      placeholder="123 Main Street, Tirana"
-                      {...register('fullAddress')}
-                    />
                   </label>
+                  <AddressAutocomplete
+                    aria-describedby={errors.fullAddress ? 'signup-address-hint signup-address-error' : 'signup-address-hint'}
+                    aria-invalid={Boolean(errors.fullAddress)}
+                    id="signup-address"
+                    maxLength={500}
+                    name="fullAddress"
+                    onSelect={(suggestion) => {
+                      setValue('fullAddress', suggestion.address, { shouldDirty: true, shouldValidate: true })
+                      setValue('latitude', suggestion.latitude)
+                      setValue('longitude', suggestion.longitude)
+                    }}
+                    onValueChange={(value) => {
+                      setValue('fullAddress', value, { shouldDirty: true })
+                      setValue('latitude', undefined)
+                      setValue('longitude', undefined)
+                    }}
+                    placeholder="Rruga e Kavajës 12, Tiranë"
+                    value={fullAddress}
+                  />
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground" id="signup-address-hint">
+                    {hasPickedAddress ? t('auth.signup.addressPicked') : t('auth.signup.addressHint')}
+                  </p>
                 </FieldError>
                 <FieldError
                   className="sm:col-span-2"

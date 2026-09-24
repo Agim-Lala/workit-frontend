@@ -21,6 +21,9 @@ export const signupSchema = z
     location: z.string().max(200, 'Keep your location under 200 characters.').optional(),
     businessName: z.string().optional(),
     fullAddress: z.string().optional(),
+    // Set only when the address came from a suggestion or the user's location; cleared on free typing.
+    latitude: z.number().min(-90).max(90).optional(),
+    longitude: z.number().min(-180).max(180).optional(),
     nipt: z.string().optional(),
   })
   .superRefine((values, context) => {

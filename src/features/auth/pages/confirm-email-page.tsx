@@ -11,7 +11,7 @@ import { getApiError } from '@/lib/api-error'
 
 import { confirmEmail } from '../api/confirm-email'
 import { resendConfirmation } from '../api/resend-confirmation'
-import { getStoredUser } from '../utils/auth-token'
+import { getStoredUser, markStoredUserEmailConfirmed } from '../utils/auth-token'
 import { getDefaultAuthenticatedPath } from '../utils/user-role'
 
 type Status = 'confirming' | 'success' | 'error'
@@ -34,7 +34,10 @@ export function ConfirmEmailPage() {
     hasRequested.current = true
 
     confirmEmail(token)
-      .then(() => setStatus('success'))
+      .then(() => {
+        markStoredUserEmailConfirmed()
+        setStatus('success')
+      })
       .catch((error: unknown) => {
         const apiError = getApiError(error)
         setErrorMessage(apiError?.detail ?? t('auth.confirmEmail.genericError'))

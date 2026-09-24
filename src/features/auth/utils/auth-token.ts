@@ -35,3 +35,15 @@ export function clearAccessToken() {
   window.localStorage.removeItem(accessTokenKey)
   window.localStorage.removeItem(authUserKey)
 }
+
+// The confirm endpoint returns no user, so patch the cached one; the next login refreshes it anyway.
+export function markStoredUserEmailConfirmed() {
+  const user = getStoredUser()
+
+  if (user) {
+    window.localStorage.setItem(
+      authUserKey,
+      JSON.stringify({ ...user, emailConfirmationStatus: 1 }),
+    )
+  }
+}

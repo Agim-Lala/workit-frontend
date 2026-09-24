@@ -21,3 +21,7 @@ export function getDefaultAuthenticatedPath(user: AuthUser | null) {
 
   return '/'
 }
+
+export function isEmailConfirmed(user: AuthUser) {
+  return user.emailConfirmationStatus === 'Confirmed' || user.emailConfirmationStatus === 1
+}

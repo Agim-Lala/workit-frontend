@@ -11,7 +11,6 @@ This app follows a feature-based React architecture inspired by Bulletproof Reac
 - React Hook Form and Zod for forms and validation
 - Tailwind CSS with shadcn/ui-style local components
 - Zustand for small temporary UI state
-- Vitest and React Testing Library for tests
 
 ## Structure
 
@@ -25,7 +24,6 @@ src/
 ├── hooks/
 ├── lib/
 ├── services/
-├── testing/
 ├── types/
 └── utils/
 ```
@@ -40,3 +38,4 @@ Feature modules own their API calls, hooks, schemas, types, pages, and feature-s
 - Do not import one feature from another feature.
 - Store date values as ISO 8601 strings with timezone offsets.
 - Treat client-side permission checks as UX only; backend authorization remains required.
+- Do not create test files.

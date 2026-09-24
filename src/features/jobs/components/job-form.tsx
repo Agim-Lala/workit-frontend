@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 
 export function JobForm() {
   return (
-    <form className="grid gap-4 rounded-md border border-border bg-surface p-5 shadow-sm md:grid-cols-2">
+    <form className="grid gap-4 border border-border bg-surface p-5 shadow-sm md:grid-cols-2">
       <label className="text-sm font-medium text-foreground">
         Title
         <Input className="mt-2" name="title" />

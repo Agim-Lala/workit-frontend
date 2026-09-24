@@ -12,8 +12,8 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 import { WorkitBrand } from '@/components/brand/workit-brand'
 import { LanguageToggle } from '@/components/i18n/language-toggle'
-import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { Button } from '@/components/ui/button'
+import { EmailConfirmationBanner } from '@/features/auth/components/email-confirmation-banner'
 import { clearAccessToken, getStoredUser } from '@/features/auth/utils/auth-token'
 import { hasUserRole } from '@/features/auth/utils/user-role'
 import { useT, type TranslationKey } from '@/i18n'
@@ -66,7 +66,7 @@ export function AppLayout() {
                 <NavLink
                   className={({ isActive }) =>
                     cn(
-                      'focus-ring relative my-1 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground sm:px-4',
+                      'focus-ring relative my-1 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 px-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground sm:px-4',
                       isActive && 'bg-peach text-primary',
                     )
                   }
@@ -93,7 +93,6 @@ export function AppLayout() {
 
           <div className="flex shrink-0 items-center gap-2">
             <LanguageToggle />
-            <ThemeToggle />
             {user ? (
               <Button aria-label={t('common.signOut')} onClick={signOut} type="button" variant="secondary">
                 <LogOut aria-hidden="true" size={17} />
@@ -112,6 +111,8 @@ export function AppLayout() {
           </div>
         </div>
       </header>
+
+      {user && !user.emailConfirmed ? <EmailConfirmationBanner user={user} /> : null}
 
       <main className="mx-auto max-w-[1440px] px-4 py-6 sm:py-8 lg:px-8 lg:py-10">
         <Outlet />

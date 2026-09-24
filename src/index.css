@@ -1,32 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Barlow", ui-sans-serif, sans-serif;
-  --font-display: "Barlow Condensed", "Barlow", ui-sans-serif, sans-serif;
-  /* Logo palette, three colors max: neutral (paper + navy ink), the logo's
-     blue, and the logo's orange. No black anywhere — panels that need a
-     strong fill use the blue or the orange instead of a dark neutral. */
-  --color-border: #e4e4e7;
-  --color-input: #d4d4d8;
-  --color-ring: #2563eb;
-  --color-background: #fafafa;
-  --color-foreground: #1e293b;
-  --color-primary: #2563eb;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #f4f4f5;
-  --color-secondary-foreground: #1e293b;
-  --color-muted: #f4f4f5;
-  --color-muted-foreground: #52525b;
-  --color-accent: #c2410c;
-  --color-accent-foreground: #fff7ed;
-  --color-sun: #2563eb;
-  --color-sun-foreground: #ffffff;
-  --color-peach: #fdead9;
-  --color-olive: #52525b;
-  --color-destructive: #dc2626;
-  --color-destructive-foreground: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-strong: #1e293b;
+  --font-sans: "Archivo", ui-sans-serif, sans-serif;
+  --font-display: "Archivo", ui-sans-serif, sans-serif;
+  /* Modernist system: cream ground, near-black ink, one red. Zero radius,
+     2px rules, a visible grid. No soft shadows, no pastel fills. */
+  --color-border: #d9d7cb;
+  --color-input: #b3b1a3;
+  --color-ring: #c62c16;
+  --color-background: #f2f1ec;
+  --color-foreground: #171717;
+  --color-primary: #c62c16;
+  --color-primary-foreground: #f2f1ec;
+  --color-secondary: #e7e5da;
+  --color-secondary-foreground: #171717;
+  --color-muted: #e7e5da;
+  --color-muted-foreground: #6b6a60;
+  --color-accent: #c62c16;
+  --color-accent-foreground: #f2f1ec;
+  --color-sun: #c62c16;
+  --color-sun-foreground: #f2f1ec;
+  --color-peach: #f6dcd5;
+  --color-olive: #6b6a60;
+  --color-destructive: #c62c16;
+  --color-destructive-foreground: #f2f1ec;
+  --color-surface: #f2f1ec;
+  --color-surface-strong: #171717;
 }
 
 * {
@@ -36,35 +35,11 @@
 :root {
   color: var(--color-foreground);
   background: var(--color-background);
-  font-family: "Barlow", ui-sans-serif, sans-serif;
+  font-family: "Archivo", ui-sans-serif, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-:root.dark {
-  --color-border: #334155;
-  --color-input: #475569;
-  --color-ring: #3b82f6;
-  --color-background: #0f172a;
-  --color-foreground: #f8fafc;
-  --color-primary: #3b82f6;
-  --color-primary-foreground: #0b1220;
-  --color-secondary: #1e293b;
-  --color-secondary-foreground: #f8fafc;
-  --color-muted: #1e293b;
-  --color-muted-foreground: #94a3b8;
-  --color-accent: #9a3412;
-  --color-accent-foreground: #fff7ed;
-  --color-sun: #3b82f6;
-  --color-sun-foreground: #0b1220;
-  --color-peach: #3a2412;
-  --color-olive: #94a3b8;
-  --color-destructive: #f87171;
-  --color-destructive-foreground: #450a0a;
-  --color-surface: #1e293b;
-  --color-surface-strong: #f8fafc;
 }
 
 html {
@@ -108,12 +83,13 @@ select {
 }
 
 .display-type {
-  font-family: "Barlow Condensed", "Barlow", ui-sans-serif, sans-serif;
-  letter-spacing: -0.025em;
+  font-family: "Archivo", ui-sans-serif, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .courtyard-surface {
-  border-radius: 1rem;
+  border-radius: 0;
 }
 
 :where(.courtyard-surface) {
@@ -133,9 +109,7 @@ select {
 }
 
 .courtyard-lift {
-  box-shadow:
-    0 1px 2px color-mix(in srgb, var(--color-foreground) 6%, transparent),
-    0 12px 32px -16px color-mix(in srgb, var(--color-foreground) 16%, transparent);
+  box-shadow: none;
 }
 
 .courtyard-reveal {
@@ -152,11 +126,11 @@ select {
 
 @keyframes courtyard-open {
   from {
-    clip-path: inset(0 0 12% 0 round 1rem);
+    clip-path: inset(0 0 12% 0);
     opacity: 0.82;
   }
   to {
-    clip-path: inset(0 0 0 0 round 1rem);
+    clip-path: inset(0 0 0 0);
     opacity: 1;
   }
 }
@@ -209,9 +183,8 @@ select {
   margin-top: -0.43rem;
   appearance: none;
   border: 3px solid var(--color-surface);
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--color-foreground);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-foreground) 24%, transparent);
 }
 
 .schedule-range::-moz-range-track {
@@ -224,7 +197,6 @@ select {
   width: 1rem;
   height: 1rem;
   border: 3px solid var(--color-surface);
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--color-foreground);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-foreground) 24%, transparent);
 }

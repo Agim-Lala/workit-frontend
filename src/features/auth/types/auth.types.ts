@@ -6,6 +6,8 @@ export type AuthUser = {
   id: string
   email: string
   role: UserRole
+  roleLabel: string
+  emailConfirmed: boolean
 }
 
 export type LoginCredentials = {
@@ -29,5 +31,6 @@ export type RegisterBusinessRequest = {
   fullAddress: string
   latitude: number
   longitude: number
+  nipt: string
   phone?: string
 }

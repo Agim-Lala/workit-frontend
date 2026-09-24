@@ -48,7 +48,7 @@ export function JobDayPage() {
     <section className="space-y-6">
       <header className="courtyard-surface grid overflow-hidden lg:grid-cols-[1fr_22rem]" id="job-day-title">
         <div className="bg-peach p-7 sm:p-10 lg:p-12">
-          <Link className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground" to={calendarPath}>
+          <Link className="focus-ring inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" to={calendarPath}>
             <ArrowLeft aria-hidden="true" size={17} />
             Back to month
           </Link>
@@ -58,7 +58,7 @@ export function JobDayPage() {
           <p className="mt-5 max-w-[62ch] text-base leading-7 text-muted-foreground sm:text-lg">
             Every opening scheduled for this date, gathered into one focused view.
           </p>
-          <p className="mt-5 inline-flex items-baseline gap-2 rounded-xl bg-accent px-4 py-2 text-accent-foreground lg:hidden">
+          <p className="mt-5 inline-flex items-baseline gap-2 bg-accent px-4 py-2 text-accent-foreground lg:hidden">
             <strong className="display-type text-3xl leading-none">{visibleJobs.length}</strong>
             <span className="text-sm">{visibleJobs.length === 1 ? 'opening this day' : 'openings this day'}</span>
           </p>

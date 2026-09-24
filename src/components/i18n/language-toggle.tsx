@@ -8,7 +8,7 @@ export function LanguageToggle() {
   return (
     <div
       aria-label={t('nav.selectLanguage')}
-      className="inline-flex overflow-hidden rounded-xl border border-border"
+      className="inline-flex overflow-hidden border border-border"
       role="group"
     >
       {languages.map((code) => {

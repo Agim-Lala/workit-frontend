@@ -197,7 +197,7 @@ export function ScheduleComposer({
   )
 
   return (
-    <section className="mt-8 rounded-2xl bg-background/75 px-4 py-7 sm:px-6">
+    <section className="mt-8 bg-background/75 px-4 py-7 sm:px-6">
       <input type="hidden" {...register('jobType')} />
       <input type="hidden" {...register('startDate')} />
       <input type="hidden" {...register('endDate')} />
@@ -212,7 +212,7 @@ export function ScheduleComposer({
             Build the rhythm of this job
           </h2>
         </div>
-        <div className="max-w-sm rounded-xl border border-border bg-surface px-4 py-2 text-sm font-semibold text-muted-foreground">
+        <div className="max-w-sm border border-border bg-surface px-4 py-2 text-sm font-semibold text-muted-foreground">
           {scheduleSummary}
         </div>
       </div>
@@ -254,7 +254,7 @@ export function ScheduleComposer({
           <div className="flex flex-wrap gap-2">
             {datePresets.map((preset) => (
               <button
-                className="focus-ring min-h-11 rounded-xl border border-border bg-surface px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:border-primary"
+                className="focus-ring min-h-11 border border-border bg-surface px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:border-primary"
                 key={preset.label}
                 onClick={() => applyDatePreset(preset.start, preset.end)}
                 type="button"
@@ -340,7 +340,7 @@ export function ScheduleComposer({
       </fieldset>
 
       {shiftType === '2' ? (
-        <div className="mt-4 rounded-2xl bg-surface p-4 sm:p-5">
+        <div className="mt-4 bg-surface p-4 sm:p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-foreground">Shape the hours</p>
@@ -357,7 +357,7 @@ export function ScheduleComposer({
                   <button
                     aria-pressed={isActive}
                     className={cn(
-                      'focus-ring min-h-11 rounded-xl border px-3 py-2 text-xs font-semibold transition-colors',
+                      'focus-ring min-h-11 border px-3 py-2 text-xs font-semibold transition-colors',
                       isActive
                         ? 'border-primary bg-primary text-primary-foreground'
                         : 'border-border bg-secondary text-foreground hover:border-primary',
@@ -400,7 +400,7 @@ export function ScheduleComposer({
             />
           </div>
 
-          <div className="mt-4 flex items-center gap-3 rounded-xl bg-accent px-4 py-3 text-accent-foreground">
+          <div className="mt-4 flex items-center gap-3 bg-accent px-4 py-3 text-accent-foreground">
             <Clock3 aria-hidden="true" size={18} />
             <p className="text-sm font-medium">
               {formatTime(shiftStartTime || '09:00')} →{' '}
@@ -446,7 +446,7 @@ function ChoiceCard({
         type="radio"
         value={value}
       />
-      <span className="flex min-h-28 items-start gap-3 rounded-2xl border border-border bg-surface p-4 transition-colors group-hover:border-primary/60 peer-checked:border-primary peer-checked:bg-primary/8 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring">
+      <span className="flex min-h-28 items-start gap-3 border border-border bg-surface p-4 transition-colors group-hover:border-primary/60 peer-checked:border-primary peer-checked:bg-primary/8 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring">
         <span className="grid h-10 w-10 shrink-0 place-items-center border border-border bg-secondary text-primary">
           <Icon aria-hidden="true" size={20} />
         </span>
@@ -455,7 +455,7 @@ function ChoiceCard({
             {title}
             <span
               className={cn(
-                'grid h-5 w-5 place-items-center rounded-full border transition',
+                'grid h-5 w-5 place-items-center border transition',
                 checked
                   ? 'border-primary bg-primary text-primary-foreground'
                   : 'border-border text-transparent',
@@ -513,7 +513,7 @@ function CalendarPicker({
         aria-expanded={isOpen}
         aria-invalid={Boolean(error)}
         className={cn(
-          'focus-ring flex min-h-32 w-full items-center gap-4 rounded-2xl border bg-surface p-5 text-left transition-colors hover:border-primary/60',
+          'focus-ring flex min-h-32 w-full items-center gap-4 border bg-surface p-5 text-left transition-colors hover:border-primary/60',
           isOpen && 'border-primary ring-1 ring-primary',
           error && 'border-destructive',
         )}
@@ -557,11 +557,11 @@ function CalendarPicker({
       {error ? <FieldError id={`${id}-error`} message={error} /> : null}
 
       {isOpen ? (
-        <div className="absolute left-0 top-full z-30 mt-2 w-full min-w-72 rounded-md border border-border bg-surface p-4 shadow-xl sm:w-80">
+        <div className="absolute left-0 top-full z-30 mt-2 w-full min-w-72 border border-border bg-surface p-4 shadow-xl sm:w-80">
           <div className="flex items-center justify-between">
             <button
               aria-label="Previous month"
-              className="focus-ring grid h-11 w-11 place-items-center rounded-full text-foreground hover:bg-secondary"
+              className="focus-ring grid h-11 w-11 place-items-center text-foreground hover:bg-secondary"
               onClick={() => setVisibleMonth((month) => subMonths(month, 1))}
               type="button"
             >
@@ -572,7 +572,7 @@ function CalendarPicker({
             </p>
             <button
               aria-label="Next month"
-              className="focus-ring grid h-11 w-11 place-items-center rounded-full text-foreground hover:bg-secondary"
+              className="focus-ring grid h-11 w-11 place-items-center text-foreground hover:bg-secondary"
               onClick={() => setVisibleMonth((month) => addMonths(month, 1))}
               type="button"
             >
@@ -596,7 +596,7 @@ function CalendarPicker({
                 <button
                   aria-label={format(day, 'EEEE, MMMM d, yyyy')}
                   className={cn(
-                    'focus-ring grid aspect-square place-items-center rounded-full text-xs font-medium transition',
+                    'focus-ring grid aspect-square place-items-center text-xs font-medium transition',
                     isSameMonth(day, visibleMonth)
                       ? 'text-foreground hover:bg-secondary'
                       : 'text-muted-foreground/45',

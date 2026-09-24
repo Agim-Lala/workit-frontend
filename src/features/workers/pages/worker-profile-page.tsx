@@ -62,7 +62,7 @@ export function WorkerProfilePage() {
 
   return (
     <section className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
-      <header className="courtyard-accent courtyard-surface flex min-h-96 flex-col justify-between p-7 text-accent-foreground sm:p-10">
+      <header className="courtyard-accent courtyard-surface flex min-h-96 flex-col justify-between p-7 text-accent-foreground sm:p-10 lg:sticky lg:top-28 lg:self-start">
         <MapPin aria-hidden="true" size={30} />
         <div>
           <h1 className="display-type max-w-[10ch] text-5xl font-bold leading-[0.9] sm:text-6xl">
@@ -78,7 +78,7 @@ export function WorkerProfilePage() {
         <div className="courtyard-surface p-6 sm:p-9">
           <div className="flex items-center justify-between gap-4 pb-2">
             {profile ? (
-              <div className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-secondary px-4 text-sm font-semibold text-foreground">
+              <div className="inline-flex min-h-11 items-center gap-2 bg-secondary px-4 text-sm font-semibold text-foreground">
                 <UserRound aria-hidden="true" size={17} />
                 {profile.firstName} {profile.lastName}
               </div>
@@ -86,13 +86,13 @@ export function WorkerProfilePage() {
           </div>
 
           {profileQuery.isLoading ? (
-            <div aria-live="polite" className="mt-8 rounded-2xl border border-border bg-background px-6 py-12 text-center">
+            <div aria-live="polite" className="mt-8 border border-border bg-background px-6 py-12 text-center">
               <p className="text-sm text-muted-foreground">{t('workerProfile.loading')}</p>
             </div>
           ) : null}
 
           {profileQuery.isError && !profile ? (
-            <div className="mt-8 rounded-2xl border border-destructive/45 bg-background p-6" role="alert">
+            <div className="mt-8 border border-destructive/45 bg-background p-6" role="alert">
               <h3 className="display-type text-3xl font-bold">{t('workerProfile.loadError.title')}</h3>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">{t('workerProfile.loadError.body')}</p>
               <Button className="mt-5" onClick={() => void profileQuery.refetch()} type="button" variant="secondary">
@@ -148,7 +148,7 @@ function LocationCard({ profile }: { profile: WorkerProfile }) {
           <div className="flex items-center gap-2">
             <h2 className="display-type text-3xl font-bold">{t('workerProfile.location.title')}</h2>
             {profile.isLocationVerified ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-accent-foreground">
+              <span className="inline-flex items-center gap-1 bg-accent px-2.5 py-1 text-xs font-semibold text-accent-foreground">
                 <ShieldCheck aria-hidden="true" size={13} />
                 {t('workerProfile.location.verifiedBadge')}
               </span>
@@ -307,7 +307,7 @@ function DocumentsCard({ profile }: { profile: WorkerProfile }) {
             {t('workerProfile.documents.photo.label')}
           </p>
           <div className="mt-3 flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-secondary">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden border border-border bg-secondary">
               {photoUrl ? (
                 <img alt="" className="h-full w-full object-cover" src={photoUrl} />
               ) : (
@@ -350,7 +350,7 @@ function FileUploadButton({
 }) {
   return (
     <label className={cn(
-      'focus-ring inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-semibold text-foreground transition-colors hover:border-primary/45 hover:bg-secondary/65',
+      'focus-ring inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 border border-border bg-surface px-5 text-sm font-semibold text-foreground transition-colors hover:border-primary/45 hover:bg-secondary/65',
       pending && 'pointer-events-none opacity-60',
     )}
     >
@@ -440,13 +440,13 @@ function PreferencesCard({ profile }: { profile: WorkerProfile }) {
           ) : null}
           {interestedFields.map((field) => (
             <span
-              className="inline-flex items-center gap-1.5 rounded-full bg-peach px-3 py-1.5 text-sm font-medium text-foreground"
+              className="inline-flex items-center gap-1.5 bg-peach px-3 py-1.5 text-sm font-medium text-foreground"
               key={field}
             >
               {field}
               <button
                 aria-label={t('workerProfile.preferences.removeField', { field })}
-                className="focus-ring rounded-full text-muted-foreground hover:text-foreground"
+                className="focus-ring text-muted-foreground hover:text-foreground"
                 onClick={() => removeField(field)}
                 type="button"
               >
@@ -466,7 +466,7 @@ function PreferencesCard({ profile }: { profile: WorkerProfile }) {
               <button
                 aria-pressed={isSelected}
                 className={cn(
-                  'focus-ring min-h-11 rounded-xl border px-4 text-sm font-semibold transition-colors',
+                  'focus-ring min-h-11 border px-4 text-sm font-semibold transition-colors',
                   isSelected
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-surface text-foreground hover:border-primary/45',

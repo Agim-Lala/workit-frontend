@@ -1,5 +1,8 @@
 import { z } from 'zod'
 
+// Albania's business tax registration number: 1 letter + 8 digits + 1 letter (e.g. L12345678A).
+const niptPattern = /^[A-Za-z]\d{8}[A-Za-z]$/
+
 export const loginSchema = z.object({
   email: z.string().email('Enter a valid email address.'),
   password: z.string().min(8, 'Password must be at least 8 characters.'),
@@ -18,6 +21,7 @@ export const signupSchema = z
     location: z.string().max(200, 'Keep your location under 200 characters.').optional(),
     businessName: z.string().optional(),
     fullAddress: z.string().optional(),
+    nipt: z.string().optional(),
   })
   .superRefine((values, context) => {
     if (values.accountType === 'worker') {
@@ -60,6 +64,21 @@ export const signupSchema = z
           code: 'custom',
           message: 'Enter your business address.',
           path: ['fullAddress'],
+        })
+      }
+
+      const nipt = values.nipt?.trim() ?? ''
+      if (!nipt) {
+        context.addIssue({
+          code: 'custom',
+          message: 'Enter your business NIPT.',
+          path: ['nipt'],
+        })
+      } else if (!niptPattern.test(nipt)) {
+        context.addIssue({
+          code: 'custom',
+          message: 'Enter a valid NIPT (e.g. L12345678A).',
+          path: ['nipt'],
         })
       }
     }

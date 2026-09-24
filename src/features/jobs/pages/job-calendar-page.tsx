@@ -191,7 +191,7 @@ function CalendarDay({
       {jobs.length > 1 ? (
         <Link
           aria-label={`View all ${jobs.length} openings for ${format(day, 'MMMM d')}`}
-          className="focus-ring -m-1 flex min-h-11 items-center justify-between gap-2 rounded-xl p-1 hover:bg-secondary/60"
+          className="focus-ring -m-1 flex min-h-11 items-center justify-between gap-2 p-1 hover:bg-secondary/60"
           to={dayPath}
         >
           <DayNumber day={day} muted={muted} />
@@ -207,7 +207,7 @@ function CalendarDay({
       <div className="mt-2.5 space-y-2">
         {shownJobs.map((job) => (
           <Link
-            className="focus-ring block rounded-xl bg-peach px-2.5 py-2 transition-colors hover:bg-secondary"
+            className="focus-ring block bg-peach px-2.5 py-2 transition-colors hover:bg-secondary"
             key={job.id}
             to={`/jobs/${job.id}`}
           >
@@ -227,7 +227,7 @@ function CalendarDay({
           </Link>
         ))}
         {jobs.length > shownJobs.length ? (
-          <Link className="focus-ring flex min-h-11 items-center rounded-lg px-2 text-xs font-semibold text-primary hover:bg-secondary/60" to={dayPath}>
+          <Link className="focus-ring flex min-h-11 items-center px-2 text-xs font-semibold text-primary hover:bg-secondary/60" to={dayPath}>
             View all {jobs.length} openings
           </Link>
         ) : null}
@@ -240,7 +240,7 @@ function DayNumber({ day, muted }: { day: Date; muted: boolean }) {
   return (
     <time
       className={cn(
-        'grid h-8 w-8 place-items-center rounded-lg text-sm font-bold',
+        'grid h-8 w-8 place-items-center text-sm font-bold',
         isSameDay(day, new Date()) ? 'bg-primary text-primary-foreground' : 'text-foreground',
         muted && 'text-muted-foreground',
       )}

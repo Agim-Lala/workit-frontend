@@ -119,7 +119,9 @@ const en = {
   'auth.field.businessName': 'Business name',
   'auth.field.businessAddress': 'Business address',
   'auth.field.phone': 'Phone',
+  'auth.field.nipt': 'NIPT',
   'auth.placeholder.password': 'Minimum 8 characters',
+  'auth.rateLimited': 'Too many attempts. Wait a moment and try again.',
 
   // Auth — login
   'auth.login.brandTitle': 'Pick up where work left off.',
@@ -148,9 +150,30 @@ const en = {
   'auth.signup.haveAccount': 'Already have an account?',
   'auth.signup.locationHint':
     'Workit uses this to show openings whose work location includes your city or area.',
+  'auth.signup.niptHint':
+    "Albania's business tax registration number, used to verify your business (e.g. L12345678A).",
   'auth.signup.submit': 'Create account',
   'auth.signup.submitting': 'Creating account…',
   'auth.signup.error': 'Unable to create that account. Try another email.',
+
+  // Auth — email confirmation
+  'auth.confirmEmail.title': 'Confirm your email',
+  'auth.confirmEmail.confirming': 'Confirming your email…',
+  'auth.confirmEmail.success': 'Your email is confirmed.',
+  'auth.confirmEmail.successCta': 'Continue to Workit',
+  'auth.confirmEmail.missingToken': 'This confirmation link is missing its token.',
+  'auth.confirmEmail.genericError': 'We could not confirm that link.',
+  'auth.confirmEmail.resendLabel': 'Email address',
+  'auth.confirmEmail.resendSubmit': 'Resend confirmation email',
+  'auth.confirmEmail.resendSubmitting': 'Sending…',
+  'auth.confirmEmail.resendSuccess':
+    "If that email is registered and unconfirmed, we've sent a new link.",
+
+  // Auth — unconfirmed email banner
+  'auth.emailBanner.message': 'Confirm your email to secure your account.',
+  'auth.emailBanner.resend': 'Resend email',
+  'auth.emailBanner.resendSuccess': 'Confirmation email sent.',
+  'auth.emailBanner.resendError': "Couldn't send the email. Try again shortly.",
 
   // How it works page
   'howItWorks.title': 'How Workit works',
@@ -409,7 +432,9 @@ const sq: Record<TranslationKey, string> = {
   'auth.field.businessName': 'Emri i biznesit',
   'auth.field.businessAddress': 'Adresa e biznesit',
   'auth.field.phone': 'Telefoni',
+  'auth.field.nipt': 'NIPT-i',
   'auth.placeholder.password': 'Minimumi 8 karaktere',
+  'auth.rateLimited': 'Shumë përpjekje. Prit pak dhe provo përsëri.',
 
   'auth.login.brandTitle': 'Vazhdo nga aty ku e le punën.',
   'auth.login.brandBody':
@@ -436,9 +461,28 @@ const sq: Record<TranslationKey, string> = {
   'auth.signup.haveAccount': 'Ke tashmë një llogari?',
   'auth.signup.locationHint':
     'Workit e përdor këtë për të shfaqur shpalljet vendndodhja e punës e të cilave përfshin qytetin ose zonën tënde.',
+  'auth.signup.niptHint':
+    'Numri i identifikimit tatimor të biznesit në Shqipëri, përdoret për të verifikuar biznesin tënd (p.sh. L12345678A).',
   'auth.signup.submit': 'Krijo llogari',
   'auth.signup.submitting': 'Po krijohet llogaria…',
   'auth.signup.error': 'Nuk mund të krijohet ajo llogari. Provo një email tjetër.',
+
+  'auth.confirmEmail.title': 'Konfirmo email-in',
+  'auth.confirmEmail.confirming': 'Po konfirmohet email-i yt…',
+  'auth.confirmEmail.success': 'Email-i yt është konfirmuar.',
+  'auth.confirmEmail.successCta': 'Vazhdo te Workit',
+  'auth.confirmEmail.missingToken': 'Kjo lidhje konfirmimi nuk ka kod.',
+  'auth.confirmEmail.genericError': 'Nuk mundëm ta konfirmojmë atë lidhje.',
+  'auth.confirmEmail.resendLabel': 'Adresa e email-it',
+  'auth.confirmEmail.resendSubmit': 'Ridërgo email-in e konfirmimit',
+  'auth.confirmEmail.resendSubmitting': 'Po dërgohet…',
+  'auth.confirmEmail.resendSuccess':
+    'Nëse ai email është i regjistruar dhe i pakonfirmuar, dërguam një lidhje të re.',
+
+  'auth.emailBanner.message': 'Konfirmo email-in për të siguruar llogarinë tënde.',
+  'auth.emailBanner.resend': 'Ridërgo email-in',
+  'auth.emailBanner.resendSuccess': 'Email-i i konfirmimit u dërgua.',
+  'auth.emailBanner.resendError': 'Nuk u dërgua dot email-i. Provo përsëri pas pak.',
 
   'howItWorks.title': 'Si funksionon Workit',
   'howItWorks.intro':

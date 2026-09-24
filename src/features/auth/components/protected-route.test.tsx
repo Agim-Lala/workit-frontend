@@ -27,7 +27,8 @@ test('renders protected content when an access token exists', async () => {
     email: 'worker@example.com',
     role: 0,
     roleLabel: 'Worker',
-    emailConfirmed: true,
+    emailConfirmationStatus: 1,
+    emailConfirmationStatusLabel: 'Confirmed',
   })
   renderProtectedRoute()
 
@@ -40,7 +41,8 @@ test('redirects an authenticated business away from worker-only routes', async (
     email: 'business@example.com',
     role: 1,
     roleLabel: 'Business',
-    emailConfirmed: true,
+    emailConfirmationStatus: 1,
+    emailConfirmationStatusLabel: 'Confirmed',
   })
   renderProtectedRoute()
 

@@ -152,6 +152,8 @@ const en = {
     'Workit uses this to show openings whose work location includes your city or area.',
   'auth.signup.niptHint':
     "Albania's business tax registration number, used to verify your business (e.g. L12345678A).",
+  'auth.signup.addressHint': 'Start typing and pick your address, or use your current location.',
+  'auth.signup.addressPicked': 'Location pinned. Editing the address will pin it again from the text.',
   'auth.signup.submit': 'Create account',
   'auth.signup.submitting': 'Creating account…',
   'auth.signup.error': 'Unable to create that account. Try another email.',
@@ -323,6 +325,24 @@ const en = {
   'workerProfile.verification.refresh': 'Refresh status',
   'workerProfile.verification.verifiedHint': 'Your identity is verified.',
   'workerProfile.verification.rejectedHint': 'Verification wasn’t successful. You can try again.',
+
+  'address.noResults': 'No matching addresses. You can keep what you typed.',
+  'address.locate.button': 'Use my current location',
+  'address.locate.locating': 'Locating…',
+  'address.locate.denied': 'Location access was denied. Type your address instead.',
+  'address.locate.unsupported': 'Your browser can’t share its location. Type your address instead.',
+  'address.locate.notFound': 'No address found at your location. Type it instead.',
+
+  'workerProfile.reviews.title': 'Reviews',
+  'workerProfile.reviews.body': 'Ratings businesses left after shifts you completed.',
+  'workerProfile.reviews.loading': 'Loading reviews…',
+  'workerProfile.reviews.error': 'Reviews could not be loaded.',
+  'workerProfile.reviews.empty': 'No reviews yet. They appear here after you complete a shift.',
+  'workerProfile.reviews.count': '{count} reviews',
+  'workerProfile.reviews.stars': '{rating} out of 5 stars',
+  'workerProfile.reviews.previous': 'Previous',
+  'workerProfile.reviews.next': 'Next',
+  'workerProfile.reviews.page': 'Page {page} of {total}',
 } as const
 
 export type TranslationKey = keyof typeof en
@@ -463,6 +483,8 @@ const sq: Record<TranslationKey, string> = {
     'Workit e përdor këtë për të shfaqur shpalljet vendndodhja e punës e të cilave përfshin qytetin ose zonën tënde.',
   'auth.signup.niptHint':
     'Numri i identifikimit tatimor të biznesit në Shqipëri, përdoret për të verifikuar biznesin tënd (p.sh. L12345678A).',
+  'auth.signup.addressHint': 'Fillo të shkruash dhe zgjidh adresën, ose përdor vendndodhjen tënde.',
+  'auth.signup.addressPicked': 'Vendndodhja u caktua. Nëse ndryshon adresën, ajo do të caktohet sërish nga teksti.',
   'auth.signup.submit': 'Krijo llogari',
   'auth.signup.submitting': 'Po krijohet llogaria…',
   'auth.signup.error': 'Nuk mund të krijohet ajo llogari. Provo një email tjetër.',
@@ -629,6 +651,24 @@ const sq: Record<TranslationKey, string> = {
   'workerProfile.verification.refresh': 'Rifresko statusin',
   'workerProfile.verification.verifiedHint': 'Identiteti yt është i verifikuar.',
   'workerProfile.verification.rejectedHint': 'Verifikimi nuk pati sukses. Mund të provosh përsëri.',
+
+  'address.noResults': 'Nuk u gjet asnjë adresë. Mund të mbash atë që shkrove.',
+  'address.locate.button': 'Përdor vendndodhjen time',
+  'address.locate.locating': 'Po gjendet…',
+  'address.locate.denied': 'Qasja në vendndodhje u refuzua. Shkruaj adresën.',
+  'address.locate.unsupported': 'Shfletuesi yt nuk mund të ndajë vendndodhjen. Shkruaj adresën.',
+  'address.locate.notFound': 'Nuk u gjet asnjë adresë në vendndodhjen tënde. Shkruaje vetë.',
+
+  'workerProfile.reviews.title': 'Vlerësimet',
+  'workerProfile.reviews.body': 'Vlerësimet që bizneset lanë pas turneve që përfundove.',
+  'workerProfile.reviews.loading': 'Po ngarkohen vlerësimet…',
+  'workerProfile.reviews.error': 'Vlerësimet nuk mund të ngarkoheshin.',
+  'workerProfile.reviews.empty': 'Ende pa vlerësime. Ato shfaqen këtu pasi përfundon një turn.',
+  'workerProfile.reviews.count': '{count} vlerësime',
+  'workerProfile.reviews.stars': '{rating} nga 5 yje',
+  'workerProfile.reviews.previous': 'Mbrapa',
+  'workerProfile.reviews.next': 'Para',
+  'workerProfile.reviews.page': 'Faqja {page} nga {total}',
 }
 
 export const dictionaries: Record<Language, Record<TranslationKey, string>> = {

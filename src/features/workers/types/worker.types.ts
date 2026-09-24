@@ -49,3 +49,22 @@ export type StartWorkerVerificationResponse = {
   hostedUrl: string
   status: WorkerVerificationStatus
 }
+
+export type WorkerReview = {
+  id: string
+  jobAssignmentId: string
+  rating: number
+  comment: string | null
+  createdAt: string
+}
+
+export type WorkerReviewsResponse = {
+  items: WorkerReview[]
+  averageRating: number | null
+  page: number
+  pageSize: number
+  totalCount: number
+  totalPages: number
+  hasPreviousPage: boolean
+  hasNextPage: boolean
+}

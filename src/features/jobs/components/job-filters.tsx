@@ -60,7 +60,7 @@ export function JobFilters({
       {!shortTermOnly ? <label>
         <span className="sr-only">Job type</span>
         <select
-          className="focus-ring h-12 w-full rounded-xl border border-input bg-surface px-3.5 text-sm text-foreground focus:border-primary"
+          className="focus-ring h-12 w-full border border-input bg-surface px-3.5 text-sm text-foreground focus:border-primary"
           onChange={(event) => setJobType(event.target.value as typeof jobType)}
           value={jobType}
         >
@@ -73,7 +73,7 @@ export function JobFilters({
       <label>
         <span className="sr-only">Shift type</span>
         <select
-          className="focus-ring h-12 w-full rounded-xl border border-input bg-surface px-3.5 text-sm text-foreground focus:border-primary"
+          className="focus-ring h-12 w-full border border-input bg-surface px-3.5 text-sm text-foreground focus:border-primary"
           onChange={(event) => setShiftType(event.target.value as typeof shiftType)}
           value={shiftType}
         >
@@ -101,7 +101,7 @@ export function JobFilters({
     <>
       {collapsibleOnMobile ? (
         <details className="courtyard-surface group p-3 sm:hidden">
-          <summary className="focus-ring flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-2 [&::-webkit-details-marker]:hidden">
+          <summary className="focus-ring flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-2 [&::-webkit-details-marker]:hidden">
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-foreground">
               <SlidersHorizontal aria-hidden="true" size={17} />
               {title}

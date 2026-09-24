@@ -55,7 +55,7 @@ export function HowItWorksPage() {
         />
       </section>
 
-      <section className="rounded-3xl border border-border bg-surface p-7 sm:p-10 lg:p-12">
+      <section className="border border-border bg-surface p-7 sm:p-10 lg:p-12">
         <h2 className="display-type text-3xl font-bold leading-none sm:text-4xl">
           {t('howItWorks.clear.title')}
         </h2>
@@ -81,7 +81,7 @@ export function HowItWorksPage() {
         <p className="mt-4 leading-7 text-muted-foreground">{t('howItWorks.access.body')}</p>
       </section>
 
-      <section className="grid gap-6 rounded-3xl bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
+      <section className="grid gap-6 bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
         <div>
           <h2 className="display-type max-w-2xl text-3xl font-bold leading-none sm:text-4xl">
             {t('howItWorks.cta.title')}

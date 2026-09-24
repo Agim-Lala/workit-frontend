@@ -9,8 +9,8 @@ import { WorkitBrand } from '@/components/brand/workit-brand'
 import { LanguageToggle } from '@/components/i18n/language-toggle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { useT, type TranslationKey } from '@/i18n'
+import { getApiError, isRateLimited, toFieldName } from '@/lib/api-error'
 import { cn } from '@/lib/utils'
 
 import { registerBusiness, registerWorker } from '../api/register'
@@ -50,6 +50,7 @@ export function SignupPage() {
     handleSubmit,
     control,
     register,
+    setError,
     setValue,
   } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
@@ -63,6 +64,7 @@ export function SignupPage() {
       location: '',
       businessName: '',
       fullAddress: '',
+      nipt: '',
     },
   })
   const accountType = useWatch({ control, name: 'accountType' })
@@ -89,6 +91,7 @@ export function SignupPage() {
               fullAddress: values.fullAddress ?? '',
               latitude: 0,
               longitude: 0,
+              nipt: values.nipt?.trim() ?? '',
               phone,
             })
 
@@ -98,8 +101,24 @@ export function SignupPage() {
           (values.accountType === 'worker' ? '/jobs' : '/business'),
         { replace: true },
       )
-    } catch {
-      setSubmitError(t('auth.signup.error'))
+    } catch (error) {
+      if (isRateLimited(error)) {
+        setSubmitError(t('auth.rateLimited'))
+        return
+      }
+
+      const apiError = getApiError(error)
+
+      if (apiError?.errors) {
+        for (const [propertyName, messages] of Object.entries(apiError.errors)) {
+          const fieldName = toFieldName(propertyName) as keyof SignupFormValues
+          if (messages[0]) {
+            setError(fieldName, { message: messages[0], type: 'server' })
+          }
+        }
+      }
+
+      setSubmitError(apiError?.detail ?? apiError?.title ?? t('auth.signup.error'))
     }
   }
 
@@ -111,7 +130,6 @@ export function SignupPage() {
         </Link>
         <div className="flex items-center gap-2">
           <LanguageToggle />
-          <ThemeToggle />
         </div>
       </header>
       <section className="mx-auto grid min-h-[calc(100vh-6rem)] w-full max-w-7xl items-center gap-10 py-10 lg:grid-cols-[0.82fr_1.18fr] lg:py-14">
@@ -132,7 +150,7 @@ export function SignupPage() {
               return (
                 <button
                   className={cn(
-                    'focus-ring flex w-full items-start gap-4 rounded-2xl border bg-surface p-5 text-left transition-colors',
+                    'focus-ring flex w-full items-start gap-4 border bg-surface p-5 text-left transition-colors',
                     isSelected
                       ? 'border-primary bg-peach text-foreground'
                       : 'border-border hover:border-foreground/40',
@@ -292,6 +310,26 @@ export function SignupPage() {
                       {...register('fullAddress')}
                     />
                   </label>
+                </FieldError>
+                <FieldError
+                  className="sm:col-span-2"
+                  errorId="signup-nipt-error"
+                  message={errors.nipt?.message}
+                >
+                  <label className="text-sm font-medium text-foreground" htmlFor="signup-nipt">
+                    {t('auth.field.nipt')}
+                    <Input
+                      aria-describedby={errors.nipt ? 'signup-nipt-hint signup-nipt-error' : 'signup-nipt-hint'}
+                      aria-invalid={Boolean(errors.nipt)}
+                      className="mt-2 uppercase"
+                      id="signup-nipt"
+                      placeholder="L12345678A"
+                      {...register('nipt')}
+                    />
+                  </label>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground" id="signup-nipt-hint">
+                    {t('auth.signup.niptHint')}
+                  </p>
                 </FieldError>
               </>
             )}

@@ -10,11 +10,11 @@ export function JobViewNavigation({ calendarTo = '/jobs/calendar' }: { calendarT
   ]
 
   return (
-    <nav aria-label="Choose how to view jobs" className="inline-flex rounded-2xl bg-secondary/70 p-1.5">
+    <nav aria-label="Choose how to view jobs" className="inline-flex bg-secondary/70 p-1.5">
       {views.map((view) => (
         <NavLink
           className={({ isActive }) => cn(
-            'focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground',
+            'focus-ring inline-flex min-h-11 items-center gap-2 px-4 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground',
             isActive && 'bg-surface text-primary',
           )}
           end={view.end}

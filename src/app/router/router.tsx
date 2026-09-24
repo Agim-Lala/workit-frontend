@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { AppLayout } from '@/components/layouts/app-layout'
 import { ProtectedRoute } from '@/features/auth/components/protected-route'
+import { ConfirmEmailPage } from '@/features/auth/pages/confirm-email-page'
 import { LoginPage } from '@/features/auth/pages/login-page'
 import { SignupPage } from '@/features/auth/pages/signup-page'
 import { ApplicationsPage } from '@/features/applications/pages/applications-page'
@@ -48,4 +49,5 @@ export const router = createBrowserRouter([
   },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <SignupPage /> },
+  { path: '/confirm-email', element: <ConfirmEmailPage /> },
 ])

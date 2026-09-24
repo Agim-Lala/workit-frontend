@@ -8,8 +8,8 @@ import { WorkitBrand } from '@/components/brand/workit-brand'
 import { LanguageToggle } from '@/components/i18n/language-toggle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ThemeToggle } from '@/components/theme/theme-toggle'
 import { useT } from '@/i18n'
+import { getApiError, isRateLimited } from '@/lib/api-error'
 
 import { login } from '../api/login'
 import type { AuthRedirectState } from '../components/protected-route'
@@ -46,8 +46,14 @@ export function LoginPage() {
           getDefaultAuthenticatedPath(response.user),
         { replace: true },
       )
-    } catch {
-      setSubmitError(t('auth.login.error'))
+    } catch (error) {
+      if (isRateLimited(error)) {
+        setSubmitError(t('auth.rateLimited'))
+        return
+      }
+
+      const apiError = getApiError(error)
+      setSubmitError(apiError?.detail ?? t('auth.login.error'))
     }
   }
 
@@ -81,7 +87,6 @@ export function LoginPage() {
           </Link>
           <div className="flex items-center gap-2">
             <LanguageToggle />
-            <ThemeToggle />
           </div>
         </div>
 

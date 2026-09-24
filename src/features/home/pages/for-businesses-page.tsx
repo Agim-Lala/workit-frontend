@@ -54,7 +54,7 @@ export function ForBusinessesPage() {
         <h2 className="display-type text-3xl font-bold leading-none sm:text-4xl">
           {t('forBusinesses.workTypes.title')}
         </h2>
-        <dl className="mt-8 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-3">
+        <dl className="mt-8 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
           {workTypeKeys.map(([termKey, detailKey]) => (
             <div className="bg-surface p-6 sm:p-8" key={termKey}>
               <dt className="text-base font-semibold text-foreground">{t(termKey)}</dt>
@@ -74,7 +74,7 @@ export function ForBusinessesPage() {
         <ul className="mt-6 flex flex-wrap gap-2">
           {payKeys.map((key) => (
             <li
-              className="rounded-full border border-border px-4 py-1.5 text-sm font-semibold text-foreground"
+              className="border border-border px-4 py-1.5 text-sm font-semibold text-foreground"
               key={key}
             >
               {t(key)}
@@ -99,7 +99,7 @@ export function ForBusinessesPage() {
         </dl>
       </section>
 
-      <section className="rounded-3xl border border-border bg-surface p-7 sm:p-10 lg:p-12">
+      <section className="border border-border bg-surface p-7 sm:p-10 lg:p-12">
         <h2 className="display-type text-3xl font-bold leading-none sm:text-4xl">
           {t('forBusinesses.steps.title')}
         </h2>
@@ -115,7 +115,7 @@ export function ForBusinessesPage() {
         </ol>
       </section>
 
-      <section className="grid gap-6 rounded-3xl bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
+      <section className="grid gap-6 bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
         <div>
           <h2 className="display-type max-w-2xl text-3xl font-bold leading-none sm:text-4xl">
             {t('forBusinesses.cta.title')}

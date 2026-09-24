@@ -73,7 +73,7 @@ export function HomePage() {
           </p>
         </div>
 
-        <div className="courtyard-lift rounded-3xl border border-border bg-surface p-5 sm:p-8 lg:p-10">
+        <div className="courtyard-lift border border-border bg-surface p-5 sm:p-8 lg:p-10">
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
             <p className="text-sm font-semibold text-muted-foreground">{t('home.preview.label')}</p>
             <p className="tabular-nums text-sm font-semibold text-muted-foreground">0{activeJobIndex + 1} / 03</p>
@@ -98,7 +98,7 @@ export function HomePage() {
                 aria-label={t('home.preview.showJob', { title: t(job.titleKey) })}
                 aria-pressed={activeJobIndex === index}
                 className={cn(
-                  'focus-ring min-h-11 rounded-xl border text-sm font-bold transition-colors',
+                  'focus-ring min-h-11 border text-sm font-bold transition-colors',
                   activeJobIndex === index
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-secondary text-muted-foreground hover:text-foreground',
@@ -136,7 +136,7 @@ export function HomePage() {
       </section>
 
       <section
-        className="scroll-mt-24 grid gap-10 rounded-3xl border border-border bg-surface p-7 sm:p-10 lg:grid-cols-[1fr_1fr] lg:gap-14 lg:p-12"
+        className="scroll-mt-24 grid gap-10 border border-border bg-surface p-7 sm:p-10 lg:grid-cols-[1fr_1fr] lg:gap-14 lg:p-12"
         id="for-businesses"
       >
         <div>
@@ -177,7 +177,7 @@ export function HomePage() {
         </dl>
       </section>
 
-      <section className="grid gap-6 rounded-3xl bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
+      <section className="grid gap-6 bg-primary px-6 py-10 text-primary-foreground sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
         <div>
           <h2 className="display-type max-w-2xl text-4xl font-bold leading-none sm:text-5xl">
             {t('home.cta.title')}

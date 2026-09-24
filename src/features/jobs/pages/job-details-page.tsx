@@ -31,7 +31,7 @@ export function JobDetailsPage() {
 
       <div className="grid gap-5 lg:grid-cols-[1fr_22rem]">
         <article className="courtyard-surface p-6 sm:p-9">
-          <div className="h-2 w-20 rounded-full bg-sun" />
+          <div className="h-2 w-20 bg-sun" />
           <div className="mt-6 flex flex-wrap gap-2">
             <Badge className="border-primary/35 bg-primary/10 text-primary">{job.role}</Badge>
             <Badge>{formatJobStatus(job.status)}</Badge>

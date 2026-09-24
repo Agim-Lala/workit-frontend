@@ -27,7 +27,7 @@ import {
 } from '../schemas/job-opening.schema'
 
 const fieldClassName =
-  'focus-ring mt-2 min-h-12 w-full rounded-xl border border-input bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary aria-invalid:border-destructive'
+  'focus-ring mt-2 min-h-12 w-full border border-input bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary aria-invalid:border-destructive'
 
 export function BusinessLaunchPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -83,7 +83,7 @@ export function BusinessLaunchPage() {
     <section className="space-y-6">
       <header className="courtyard-surface grid overflow-hidden lg:grid-cols-[1fr_22rem]">
         <div className="bg-peach p-7 sm:p-10 lg:p-12">
-          <a className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-muted-foreground hover:text-foreground" href="/business">
+          <a className="focus-ring inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" href="/business">
             <ArrowLeft aria-hidden="true" size={17} />
             Back to overview
           </a>
@@ -266,7 +266,7 @@ export function BusinessLaunchPage() {
 function ProgressStep({ className, label }: { className?: string; label: string }) {
   return (
     <li className={`flex min-h-16 items-center gap-3 border-border px-5 py-4 ${className ?? ''}`}>
-      <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-primary" />
+      <span aria-hidden="true" className="h-2.5 w-2.5 bg-primary" />
       <span className="text-sm font-semibold text-foreground">{label}</span>
     </li>
   )

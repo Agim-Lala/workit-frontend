@@ -147,7 +147,7 @@ export function BusinessOpeningsBoard({ openings, embedded = false }: BusinessOp
                 shift, requested crew, and staffing state.
               </p>
             </div>
-            <div className="rounded-xl bg-secondary/70 p-5">
+            <div className="bg-secondary/70 p-5">
               <p className="text-sm font-bold text-foreground">Team tracking</p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 Employee names and confirmation counts are intentionally left blank
@@ -171,7 +171,7 @@ function SummaryItem({
 }) {
   return (
     <div className="grid grid-cols-[2.75rem_1fr_auto] items-center gap-3 border-b border-accent-foreground/25 p-5 last:border-b-0">
-      <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent-foreground/12">
+      <span className="grid h-11 w-11 place-items-center bg-accent-foreground/12">
         <Icon aria-hidden="true" size={19} />
       </span>
       <p className="text-sm font-semibold text-accent-foreground">{label}</p>
@@ -198,7 +198,7 @@ function WeeklyPlanner({ openings }: BusinessOperationsDashboardProps) {
         </div>
         <CalendarDays aria-hidden="true" className="text-primary" size={26} />
       </div>
-      <div className="mt-10 grid grid-cols-7 overflow-hidden rounded-2xl border border-primary/20 bg-surface/65">
+      <div className="mt-10 grid grid-cols-7 overflow-hidden border border-primary/20 bg-surface/65">
         {days.map((day) => {
           const count = openings.filter((opening) => openingOccursOnDate(opening, day)).length
 
@@ -206,7 +206,7 @@ function WeeklyPlanner({ openings }: BusinessOperationsDashboardProps) {
             <div className="min-w-0 border-r border-primary/20 p-2 text-center last:border-r-0 sm:p-3" key={day.toISOString()}>
               <p className="text-xs font-bold uppercase text-muted-foreground">{format(day, 'EEE')}</p>
               <p className="display-type mt-2 text-2xl font-bold">{format(day, 'd')}</p>
-              <span aria-label={`${count} openings`} className={count > 0 ? 'mx-auto mt-3 block h-2.5 w-2.5 rounded-full bg-primary' : 'mx-auto mt-3 block h-2.5 w-2.5 rounded-full bg-border'} />
+              <span aria-label={`${count} openings`} className={count > 0 ? 'mx-auto mt-3 block h-2.5 w-2.5 bg-primary' : 'mx-auto mt-3 block h-2.5 w-2.5 bg-border'} />
             </div>
           )
         })}

@@ -119,7 +119,9 @@ const en = {
   'auth.field.businessName': 'Business name',
   'auth.field.businessAddress': 'Business address',
   'auth.field.phone': 'Phone',
+  'auth.field.nipt': 'NIPT',
   'auth.placeholder.password': 'Minimum 8 characters',
+  'auth.rateLimited': 'Too many attempts. Wait a moment and try again.',
 
   // Auth — login
   'auth.login.brandTitle': 'Pick up where work left off.',
@@ -148,9 +150,30 @@ const en = {
   'auth.signup.haveAccount': 'Already have an account?',
   'auth.signup.locationHint':
     'Workit uses this to show openings whose work location includes your city or area.',
+  'auth.signup.niptHint':
+    "Albania's business tax registration number, used to verify your business (e.g. L12345678A).",
   'auth.signup.submit': 'Create account',
   'auth.signup.submitting': 'Creating account…',
   'auth.signup.error': 'Unable to create that account. Try another email.',
+
+  // Auth — email confirmation
+  'auth.confirmEmail.title': 'Confirm your email',
+  'auth.confirmEmail.confirming': 'Confirming your email…',
+  'auth.confirmEmail.success': 'Your email is confirmed.',
+  'auth.confirmEmail.successCta': 'Continue to Workit',
+  'auth.confirmEmail.missingToken': 'This confirmation link is missing its token.',
+  'auth.confirmEmail.genericError': 'We could not confirm that link.',
+  'auth.confirmEmail.resendLabel': 'Email address',
+  'auth.confirmEmail.resendSubmit': 'Resend confirmation email',
+  'auth.confirmEmail.resendSubmitting': 'Sending…',
+  'auth.confirmEmail.resendSuccess':
+    "If that email is registered and unconfirmed, we've sent a new link.",
+
+  // Auth — unconfirmed email banner
+  'auth.emailBanner.message': 'Confirm your email to secure your account.',
+  'auth.emailBanner.resend': 'Resend email',
+  'auth.emailBanner.resendSuccess': 'Confirmation email sent.',
+  'auth.emailBanner.resendError': "Couldn't send the email. Try again shortly.",
 
   // How it works page
   'howItWorks.title': 'How Workit works',
@@ -232,6 +255,74 @@ const en = {
   'forBusinesses.steps.step4': 'Publish it to workers.',
   'forBusinesses.cta.title': 'Create a business account',
   'forBusinesses.cta.body': 'Register as an employer and publish your first opening.',
+
+  // Worker profile
+  'workerProfile.hero.title': 'Jobs should meet you where you are.',
+  'workerProfile.hero.body':
+    'Your saved city or area shapes both the opportunity list and the short-term job calendar.',
+  'workerProfile.loading': 'Loading your profile…',
+  'workerProfile.loadError.title': 'Your profile could not load.',
+  'workerProfile.loadError.body': 'Check your connection and try loading the profile again.',
+  'workerProfile.tryAgain': 'Try again',
+
+  'workerProfile.location.title': 'Location preference',
+  'workerProfile.location.body':
+    'Workit matches this text against each opening’s work location. Use a city or recognizable area such as Tirana or Durrës.',
+  'workerProfile.location.verifiedBadge': 'Verified',
+  'workerProfile.location.fieldLabel': 'City or area',
+  'workerProfile.location.hint': 'Changing this refreshes your job list and calendar automatically.',
+  'workerProfile.location.savedVerified': 'Location saved and verified.',
+  'workerProfile.location.savedUnverified': 'Location saved, but we couldn’t verify it against a real place.',
+  'workerProfile.location.error': 'Location could not be saved. Try again.',
+  'workerProfile.location.submit': 'Save location',
+  'workerProfile.location.submitting': 'Saving location…',
+
+  'workerProfile.documents.title': 'CV and photo',
+  'workerProfile.documents.body': 'Businesses reviewing your applications can see these.',
+  'workerProfile.documents.cv.label': 'CV',
+  'workerProfile.documents.cv.empty': 'No CV uploaded yet.',
+  'workerProfile.documents.cv.uploadedOn': 'Uploaded {date}',
+  'workerProfile.documents.cv.upload': 'Upload CV',
+  'workerProfile.documents.cv.replace': 'Replace CV',
+  'workerProfile.documents.cv.download': 'Download',
+  'workerProfile.documents.cv.uploading': 'Uploading…',
+  'workerProfile.documents.cv.hint': 'PDF, up to 5MB.',
+  'workerProfile.documents.cv.error': 'The CV could not be uploaded. Check the file and try again.',
+  'workerProfile.documents.photo.label': 'Profile photo',
+  'workerProfile.documents.photo.empty': 'No photo uploaded yet.',
+  'workerProfile.documents.photo.upload': 'Upload photo',
+  'workerProfile.documents.photo.replace': 'Change photo',
+  'workerProfile.documents.photo.uploading': 'Uploading…',
+  'workerProfile.documents.photo.hint': 'JPEG, PNG, or WebP, up to 5MB.',
+  'workerProfile.documents.photo.error': 'The photo could not be uploaded. Check the file and try again.',
+
+  'workerProfile.preferences.title': 'Preferences',
+  'workerProfile.preferences.body': 'Tell businesses what kind of work and schedule you’re looking for.',
+  'workerProfile.preferences.fieldsLabel': 'Interested fields',
+  'workerProfile.preferences.fieldsPlaceholder': 'e.g. Bartending',
+  'workerProfile.preferences.fieldsAdd': 'Add',
+  'workerProfile.preferences.fieldsHint': 'Up to 15. Press Enter or click Add.',
+  'workerProfile.preferences.fieldsEmpty': 'No fields added yet.',
+  'workerProfile.preferences.removeField': 'Remove {field}',
+  'workerProfile.preferences.shiftsLabel': 'Preferred shifts',
+  'workerProfile.preferences.shift.morning': 'Morning',
+  'workerProfile.preferences.shift.evening': 'Evening',
+  'workerProfile.preferences.shift.customHours': 'Custom hours',
+  'workerProfile.preferences.submit': 'Save preferences',
+  'workerProfile.preferences.submitting': 'Saving…',
+  'workerProfile.preferences.saved': 'Preferences saved.',
+  'workerProfile.preferences.error': 'Preferences could not be saved. Try again.',
+
+  'workerProfile.verification.title': 'Identity verification',
+  'workerProfile.verification.body': 'Verify your identity with an ID to get a verified badge on your profile.',
+  'workerProfile.verification.start': 'Verify with ID',
+  'workerProfile.verification.starting': 'Starting…',
+  'workerProfile.verification.error': 'Verification could not be started. Try again.',
+  'workerProfile.verification.pendingHint':
+    'Complete verification in the new tab. This page will update once it’s reviewed.',
+  'workerProfile.verification.refresh': 'Refresh status',
+  'workerProfile.verification.verifiedHint': 'Your identity is verified.',
+  'workerProfile.verification.rejectedHint': 'Verification wasn’t successful. You can try again.',
 } as const
 
 export type TranslationKey = keyof typeof en
@@ -341,7 +432,9 @@ const sq: Record<TranslationKey, string> = {
   'auth.field.businessName': 'Emri i biznesit',
   'auth.field.businessAddress': 'Adresa e biznesit',
   'auth.field.phone': 'Telefoni',
+  'auth.field.nipt': 'NIPT-i',
   'auth.placeholder.password': 'Minimumi 8 karaktere',
+  'auth.rateLimited': 'Shumë përpjekje. Prit pak dhe provo përsëri.',
 
   'auth.login.brandTitle': 'Vazhdo nga aty ku e le punën.',
   'auth.login.brandBody':
@@ -368,9 +461,28 @@ const sq: Record<TranslationKey, string> = {
   'auth.signup.haveAccount': 'Ke tashmë një llogari?',
   'auth.signup.locationHint':
     'Workit e përdor këtë për të shfaqur shpalljet vendndodhja e punës e të cilave përfshin qytetin ose zonën tënde.',
+  'auth.signup.niptHint':
+    'Numri i identifikimit tatimor të biznesit në Shqipëri, përdoret për të verifikuar biznesin tënd (p.sh. L12345678A).',
   'auth.signup.submit': 'Krijo llogari',
   'auth.signup.submitting': 'Po krijohet llogaria…',
   'auth.signup.error': 'Nuk mund të krijohet ajo llogari. Provo një email tjetër.',
+
+  'auth.confirmEmail.title': 'Konfirmo email-in',
+  'auth.confirmEmail.confirming': 'Po konfirmohet email-i yt…',
+  'auth.confirmEmail.success': 'Email-i yt është konfirmuar.',
+  'auth.confirmEmail.successCta': 'Vazhdo te Workit',
+  'auth.confirmEmail.missingToken': 'Kjo lidhje konfirmimi nuk ka kod.',
+  'auth.confirmEmail.genericError': 'Nuk mundëm ta konfirmojmë atë lidhje.',
+  'auth.confirmEmail.resendLabel': 'Adresa e email-it',
+  'auth.confirmEmail.resendSubmit': 'Ridërgo email-in e konfirmimit',
+  'auth.confirmEmail.resendSubmitting': 'Po dërgohet…',
+  'auth.confirmEmail.resendSuccess':
+    'Nëse ai email është i regjistruar dhe i pakonfirmuar, dërguam një lidhje të re.',
+
+  'auth.emailBanner.message': 'Konfirmo email-in për të siguruar llogarinë tënde.',
+  'auth.emailBanner.resend': 'Ridërgo email-in',
+  'auth.emailBanner.resendSuccess': 'Email-i i konfirmimit u dërgua.',
+  'auth.emailBanner.resendError': 'Nuk u dërgua dot email-i. Provo përsëri pas pak.',
 
   'howItWorks.title': 'Si funksionon Workit',
   'howItWorks.intro':
@@ -450,6 +562,73 @@ const sq: Record<TranslationKey, string> = {
   'forBusinesses.steps.step4': 'Publikoje te punëtorët.',
   'forBusinesses.cta.title': 'Krijo një llogari biznesi',
   'forBusinesses.cta.body': 'Regjistrohu si punëdhënës dhe publiko shpalljen tënde të parë.',
+
+  'workerProfile.hero.title': 'Puna duhet të të gjejë aty ku je.',
+  'workerProfile.hero.body':
+    'Qyteti ose zona jote e ruajtur formëson si listën e mundësive ashtu edhe kalendarin e punëve afatshkurtra.',
+  'workerProfile.loading': 'Po ngarkohet profili yt…',
+  'workerProfile.loadError.title': 'Profili yt nuk u ngarkua dot.',
+  'workerProfile.loadError.body': 'Kontrollo lidhjen dhe provo të ngarkosh profilin përsëri.',
+  'workerProfile.tryAgain': 'Provo përsëri',
+
+  'workerProfile.location.title': 'Preferenca e vendndodhjes',
+  'workerProfile.location.body':
+    'Workit e krahason këtë tekst me vendndodhjen e punës së çdo shpalljeje. Përdor një qytet ose zonë të njohur si Tirana ose Durrësi.',
+  'workerProfile.location.verifiedBadge': 'E verifikuar',
+  'workerProfile.location.fieldLabel': 'Qyteti ose zona',
+  'workerProfile.location.hint': 'Ndryshimi i kësaj rifreskon automatikisht listën e punëve dhe kalendarin.',
+  'workerProfile.location.savedVerified': 'Vendndodhja u ruajt dhe u verifikua.',
+  'workerProfile.location.savedUnverified': 'Vendndodhja u ruajt, por nuk arritëm ta verifikojmë si vend real.',
+  'workerProfile.location.error': 'Vendndodhja nuk u ruajt dot. Provo përsëri.',
+  'workerProfile.location.submit': 'Ruaj vendndodhjen',
+  'workerProfile.location.submitting': 'Po ruhet vendndodhja…',
+
+  'workerProfile.documents.title': 'CV dhe foto',
+  'workerProfile.documents.body': 'Bizneset që shqyrtojnë aplikimet e tua mund t’i shohin këto.',
+  'workerProfile.documents.cv.label': 'CV',
+  'workerProfile.documents.cv.empty': 'Nuk është ngarkuar ende asnjë CV.',
+  'workerProfile.documents.cv.uploadedOn': 'Ngarkuar më {date}',
+  'workerProfile.documents.cv.upload': 'Ngarko CV',
+  'workerProfile.documents.cv.replace': 'Zëvendëso CV-në',
+  'workerProfile.documents.cv.download': 'Shkarko',
+  'workerProfile.documents.cv.uploading': 'Po ngarkohet…',
+  'workerProfile.documents.cv.hint': 'PDF, deri në 5MB.',
+  'workerProfile.documents.cv.error': 'CV-ja nuk u ngarkua dot. Kontrollo skedarin dhe provo përsëri.',
+  'workerProfile.documents.photo.label': 'Foto profili',
+  'workerProfile.documents.photo.empty': 'Nuk është ngarkuar ende asnjë foto.',
+  'workerProfile.documents.photo.upload': 'Ngarko foto',
+  'workerProfile.documents.photo.replace': 'Ndrysho foton',
+  'workerProfile.documents.photo.uploading': 'Po ngarkohet…',
+  'workerProfile.documents.photo.hint': 'JPEG, PNG ose WebP, deri në 5MB.',
+  'workerProfile.documents.photo.error': 'Foto nuk u ngarkua dot. Kontrollo skedarin dhe provo përsëri.',
+
+  'workerProfile.preferences.title': 'Preferencat',
+  'workerProfile.preferences.body': 'Tregoju bizneseve çfarë lloj pune dhe orari kërkon.',
+  'workerProfile.preferences.fieldsLabel': 'Fushat e interesit',
+  'workerProfile.preferences.fieldsPlaceholder': 'p.sh. Banakier',
+  'workerProfile.preferences.fieldsAdd': 'Shto',
+  'workerProfile.preferences.fieldsHint': 'Deri në 15. Shtyp Enter ose kliko Shto.',
+  'workerProfile.preferences.fieldsEmpty': 'Nuk është shtuar ende asnjë fushë.',
+  'workerProfile.preferences.removeField': 'Hiq {field}',
+  'workerProfile.preferences.shiftsLabel': 'Turnet e preferuara',
+  'workerProfile.preferences.shift.morning': 'Mëngjes',
+  'workerProfile.preferences.shift.evening': 'Mbrëmje',
+  'workerProfile.preferences.shift.customHours': 'Orar i personalizuar',
+  'workerProfile.preferences.submit': 'Ruaj preferencat',
+  'workerProfile.preferences.submitting': 'Po ruhet…',
+  'workerProfile.preferences.saved': 'Preferencat u ruajtën.',
+  'workerProfile.preferences.error': 'Preferencat nuk u ruajtën dot. Provo përsëri.',
+
+  'workerProfile.verification.title': 'Verifikimi i identitetit',
+  'workerProfile.verification.body': 'Verifiko identitetin tënd me një ID për të marrë një distinktiv të verifikuar.',
+  'workerProfile.verification.start': 'Verifiko me ID',
+  'workerProfile.verification.starting': 'Po niset…',
+  'workerProfile.verification.error': 'Verifikimi nuk u nis dot. Provo përsëri.',
+  'workerProfile.verification.pendingHint':
+    'Përfundoje verifikimin në skedën e re. Kjo faqe do të përditësohet sapo të shqyrtohet.',
+  'workerProfile.verification.refresh': 'Rifresko statusin',
+  'workerProfile.verification.verifiedHint': 'Identiteti yt është i verifikuar.',
+  'workerProfile.verification.rejectedHint': 'Verifikimi nuk pati sukses. Mund të provosh përsëri.',
 }
 
 export const dictionaries: Record<Language, Record<TranslationKey, string>> = {

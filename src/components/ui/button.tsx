@@ -5,14 +5,14 @@ import type { ButtonHTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-[background-color,color,border-color,transform] disabled:pointer-events-none disabled:opacity-45 active:translate-y-px',
+  'focus-ring inline-flex min-h-11 items-center justify-center gap-2 px-5 text-sm font-bold transition-colors disabled:pointer-events-none disabled:opacity-45',
   {
     variants: {
       variant: {
-        primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        primary: 'bg-primary text-primary-foreground hover:bg-foreground',
         secondary:
-          'border border-border bg-surface text-foreground hover:border-primary/45 hover:bg-secondary/65',
-        ghost: 'text-foreground hover:bg-secondary/75',
+          'border-2 border-foreground bg-surface text-foreground hover:bg-secondary',
+        ghost: 'text-foreground hover:bg-secondary',
       },
       size: {
         default: 'min-h-11 px-5',

@@ -1,17 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
-  ArrowLeft,
   CalendarPlus,
   CheckCircle2,
   ClipboardCheck,
   Plus,
+  Sparkles,
   TimerReset,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
+import { BackLink } from '@/components/navigation/back-link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import type { JobOpening } from '@/types/job-opening.types'
@@ -30,7 +32,7 @@ const fieldClassName =
   'focus-ring mt-2 min-h-12 w-full border border-input bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary aria-invalid:border-destructive'
 
 export function BusinessLaunchPage() {
-  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [publishedOpening, setPublishedOpening] = useState<JobOpening | null>(null)
   const queryClient = useQueryClient()
   const {
     control,
@@ -68,11 +70,11 @@ export function BusinessLaunchPage() {
   })
 
   async function submitJobOpening(values: JobOpeningFormValues) {
-    setSuccessMessage(null)
+    setPublishedOpening(null)
 
     try {
       const createdJob = await createMutation.mutateAsync(values)
-      setSuccessMessage(`“${createdJob.title}” is now open to workers.`)
+      setPublishedOpening(createdJob)
       reset()
     } catch {
       // The mutation error state renders an actionable message below the form.
@@ -83,10 +85,7 @@ export function BusinessLaunchPage() {
     <section className="space-y-6">
       <header className="courtyard-surface grid overflow-hidden lg:grid-cols-[1fr_22rem]">
         <div className="bg-peach p-7 sm:p-10 lg:p-12">
-          <a className="focus-ring inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" href="/business">
-            <ArrowLeft aria-hidden="true" size={17} />
-            Back to overview
-          </a>
+          <BackLink fallback="/business/openings">Back</BackLink>
           <h1 className="display-type mt-6 max-w-[12ch] text-5xl font-bold leading-[0.92] sm:text-7xl">
             Create one clear opportunity.
           </h1>
@@ -239,11 +238,24 @@ export function BusinessLaunchPage() {
               The listing could not be created. Check the fields and try again.
             </p>
           ) : null}
-          {successMessage ? (
-            <p aria-live="polite" className="flex items-center gap-2 text-sm font-medium text-primary" role="status">
-              <CheckCircle2 aria-hidden="true" size={17} />
-              {successMessage}
-            </p>
+          {publishedOpening ? (
+            <div aria-live="polite" className="bg-peach p-4" role="status">
+              <p className="flex items-center gap-2 text-sm font-medium text-primary">
+                <CheckCircle2 aria-hidden="true" size={17} />
+                “{publishedOpening.title}” is now open to workers.
+              </p>
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                <Button asChild size="sm">
+                  <Link to={`/business/openings/${publishedOpening.id}/top-workers`}>
+                    <Sparkles aria-hidden="true" size={16} />
+                    Find the best workers
+                  </Link>
+                </Button>
+                <Button asChild size="sm" variant="secondary">
+                  <Link to="/business/openings">View all openings</Link>
+                </Button>
+              </div>
+            </div>
           ) : null}
 
           <Button className="mt-7 w-full justify-between" disabled={createMutation.isPending} type="submit">

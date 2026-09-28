@@ -15,6 +15,7 @@ export const signupSchema = z
     accountType: z.enum(['worker', 'business']),
     email: z.string().email('Enter a valid email address.'),
     password: z.string().min(8, 'Password must be at least 8 characters.'),
+    confirmPassword: z.string().min(1, 'Confirm your password.'),
     phone: z.string().optional(),
     firstName: z.string().optional(),
     lastName: z.string().optional(),
@@ -27,6 +28,14 @@ export const signupSchema = z
     nipt: z.string().optional(),
   })
   .superRefine((values, context) => {
+    if (values.confirmPassword && values.confirmPassword !== values.password) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Passwords do not match.',
+        path: ['confirmPassword'],
+      })
+    }
+
     if (values.accountType === 'worker') {
       if (!values.firstName?.trim()) {
         context.addIssue({

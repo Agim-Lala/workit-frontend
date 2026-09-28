@@ -59,6 +59,7 @@ export function SignupPage() {
       accountType: searchParams.get('type') === 'business' ? 'business' : 'worker',
       email: '',
       password: '',
+      confirmPassword: '',
       phone: '',
       firstName: '',
       lastName: '',
@@ -384,7 +385,6 @@ export function SignupPage() {
               </label>
             </FieldError>
             <FieldError
-              className="sm:col-span-2"
               errorId="signup-password-error"
               message={errors.password?.message}
             >
@@ -398,6 +398,24 @@ export function SignupPage() {
                   placeholder={t('auth.placeholder.password')}
                   type="password"
                   {...register('password')}
+                />
+              </label>
+            </FieldError>
+            <FieldError
+              errorId="signup-confirm-password-error"
+              message={errors.confirmPassword?.message}
+            >
+              <label className="text-sm font-medium text-foreground" htmlFor="signup-confirm-password">
+                {t('auth.field.confirmPassword')}
+                <Input
+                  aria-describedby={errors.confirmPassword ? 'signup-confirm-password-error' : undefined}
+                  aria-invalid={Boolean(errors.confirmPassword)}
+                  autoComplete="new-password"
+                  className="mt-2"
+                  id="signup-confirm-password"
+                  placeholder={t('auth.placeholder.confirmPassword')}
+                  type="password"
+                  {...register('confirmPassword')}
                 />
               </label>
             </FieldError>

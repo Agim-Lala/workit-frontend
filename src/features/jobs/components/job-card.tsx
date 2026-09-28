@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useFromState } from '@/hooks/use-from-state'
 
 import type { Job } from '../types/job.types'
 import {
@@ -17,6 +18,8 @@ import {
 type JobCardProps = { job: Job }
 
 export function JobCard({ job }: JobCardProps) {
+  const fromState = useFromState()
+
   return (
     <article className="courtyard-surface group relative overflow-hidden border border-transparent transition-[border-color,transform] hover:-translate-y-0.5 hover:border-primary/35">
       <div className="grid lg:grid-cols-[1.2fr_1fr_auto]">
@@ -43,7 +46,7 @@ export function JobCard({ job }: JobCardProps) {
             <p className="mt-1 text-sm text-muted-foreground">{formatPayType(job.payType)}</p>
           </div>
           <Button asChild className="mt-6 justify-between" size="sm">
-            <Link to={`/jobs/${job.id}`}>
+            <Link state={fromState} to={`/jobs/${job.id}`}>
               View details
               <ArrowRight aria-hidden="true" size={16} />
             </Link>

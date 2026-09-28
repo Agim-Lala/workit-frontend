@@ -5,6 +5,7 @@ import { signupSchema } from './auth.schema'
 const baseSignup = {
   email: 'worker@example.com',
   password: 'password123',
+  confirmPassword: 'password123',
   phone: '',
   firstName: 'Test',
   lastName: 'Worker',

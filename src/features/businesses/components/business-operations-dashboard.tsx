@@ -14,13 +14,17 @@ import {
   Clock3,
   MapPin,
   Plus,
+  Sparkles,
   UsersRound,
   Wallet,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { useFromState } from '@/hooks/use-from-state'
+import { useT } from '@/i18n'
 import type { JobOpening } from '@/types/job-opening.types'
 import {
   formatJobDateRange,
@@ -39,6 +43,7 @@ export function BusinessOperationsDashboard({
   const activeOpenings = openings.filter((opening) =>
     opening.status === 'Open' || opening.status === 1,
   )
+  const fromState = useFromState()
   const requestedWorkers = activeOpenings.reduce(
     (total, opening) => total + opening.requiredWorkersCount,
     0,
@@ -60,11 +65,11 @@ export function BusinessOperationsDashboard({
               move into one focused task at a time.
             </p>
             <Button asChild className="mt-8 justify-between sm:min-w-56">
-              <a href="/business/openings/new">
+              <Link state={fromState} to="/business/openings/new">
                 <Plus aria-hidden="true" size={18} />
                 Create new opening
                 <ArrowRight aria-hidden="true" size={18} />
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
@@ -97,10 +102,10 @@ export function BusinessOperationsDashboard({
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Button asChild className="border-sun-foreground/30 bg-surface text-foreground hover:bg-surface/90" variant="secondary">
-            <a href="/business/openings">View all openings</a>
+            <Link to="/business/openings">View all openings</Link>
           </Button>
           <Button asChild>
-            <a href="/business/openings/new">Create opening</a>
+            <Link state={fromState} to="/business/openings/new">Create opening</Link>
           </Button>
         </div>
       </section>
@@ -234,6 +239,8 @@ function OpeningDispatchRow({
   index: number
   opening: JobOpening
 }) {
+  const t = useT()
+  const fromState = useFromState()
   const payLabel = `${opening.payAmount.toLocaleString()} ALL / ${formatPayType(opening.payType).toLowerCase()}`
 
   return (
@@ -259,6 +266,12 @@ function OpeningDispatchRow({
           <OpeningFact icon={Clock3} label="Shift" value={formatJobShift(opening)} />
           <OpeningFact icon={Wallet} label="Pay" value={payLabel} />
         </dl>
+        <Button asChild className="mt-5" size="sm" variant="secondary">
+          <Link state={fromState} to={`/business/openings/${opening.id}/top-workers`}>
+            <Sparkles aria-hidden="true" size={16} />
+            {t('business.topWorkers.link')}
+          </Link>
+        </Button>
       </div>
       <div className="grid border-t border-border bg-secondary/45 sm:grid-cols-2 lg:grid-cols-1 lg:border-l lg:border-t-0">
         <div className="p-5 sm:p-6">

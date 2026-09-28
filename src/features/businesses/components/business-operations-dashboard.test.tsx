@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { expect, test } from 'vitest'
+
+import { I18nProvider } from '@/i18n'
 
 import type { JobOpening } from '@/types/job-opening.types'
 
@@ -26,7 +29,13 @@ const activeOpening: JobOpening = {
 }
 
 test('shows active openings and leaves employee assignments honest', () => {
-  render(<BusinessOperationsDashboard openings={[activeOpening]} />)
+  render(
+    <I18nProvider>
+      <MemoryRouter>
+        <BusinessOperationsDashboard openings={[activeOpening]} />
+      </MemoryRouter>
+    </I18nProvider>,
+  )
 
   expect(screen.getByRole('heading', { name: 'Friday event crew' })).toBeVisible()
   expect(screen.getByText('7,500 ALL / daily')).toBeVisible()

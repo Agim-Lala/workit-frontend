@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 import { expect, test, vi } from 'vitest'
 
 import { BusinessLaunchPage } from './business-launch-page'
@@ -17,7 +18,9 @@ test('composes dates and custom hours through the visual schedule controls', asy
 
   render(
     <QueryClientProvider client={queryClient}>
-      <BusinessLaunchPage />
+      <MemoryRouter>
+        <BusinessLaunchPage />
+      </MemoryRouter>
     </QueryClientProvider>,
   )
 

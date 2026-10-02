@@ -9,6 +9,7 @@ import { ApplicationsPage } from '@/features/applications/pages/applications-pag
 import { BusinessDashboardPage } from '@/features/businesses/pages/business-dashboard-page'
 import { BusinessLaunchPage } from '@/features/businesses/pages/business-launch-page'
 import { BusinessOpeningsPage } from '@/features/businesses/pages/business-openings-page'
+import { BusinessTopWorkersPage } from '@/features/businesses/pages/business-top-workers-page'
 import { ForBusinessesPage } from '@/features/home/pages/for-businesses-page'
 import { HomePage } from '@/features/home/pages/home-page'
 import { HowItWorksPage } from '@/features/home/pages/how-it-works-page'
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
           { path: 'business', element: <BusinessDashboardPage /> },
           { path: 'business/openings', element: <BusinessOpeningsPage /> },
           { path: 'business/openings/new', element: <BusinessLaunchPage /> },
+          { path: 'business/openings/:jobOpeningId/top-workers', element: <BusinessTopWorkersPage /> },
         ],
       },
     ],

@@ -2,12 +2,14 @@ import { Plus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
+import { useFromState } from '@/hooks/use-from-state'
 
 import { BusinessOpeningsBoard } from '../components/business-operations-dashboard'
 import { useBusinessOpenings } from '../hooks/use-business-openings'
 
 export function BusinessOpeningsPage() {
   const { data: openings = [], isError, isFetching } = useBusinessOpenings()
+  const fromState = useFromState()
 
   return (
     <section className="space-y-6">
@@ -23,7 +25,7 @@ export function BusinessOpeningsPage() {
         </div>
         <div className="p-6 sm:p-8">
           <Button asChild className="w-full sm:w-auto">
-            <Link to="/business/openings/new">
+            <Link state={fromState} to="/business/openings/new">
               <Plus aria-hidden="true" size={18} />
               Create new opening
             </Link>

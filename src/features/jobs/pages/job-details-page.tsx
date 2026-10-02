@@ -1,8 +1,9 @@
-import { ArrowLeft, CalendarClock, CheckCircle2, Clock3, MapPin, Wallet } from 'lucide-react'
+import { CalendarClock, CheckCircle2, Clock3, MapPin, Wallet } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { EmptyState } from '@/components/feedback/empty-state'
+import { BackLink } from '@/components/navigation/back-link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
@@ -24,10 +25,7 @@ export function JobDetailsPage() {
 
   return (
     <section className="space-y-5">
-      <Link className="focus-ring inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground" to="/jobs">
-        <ArrowLeft aria-hidden="true" size={17} />
-        Back to opportunities
-      </Link>
+      <BackLink fallback="/jobs">Back to opportunities</BackLink>
 
       <div className="grid gap-5 lg:grid-cols-[1fr_22rem]">
         <article className="courtyard-surface p-6 sm:p-9">

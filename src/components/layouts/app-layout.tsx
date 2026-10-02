@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { WorkitBrand } from '@/components/brand/workit-brand'
 import { LanguageToggle } from '@/components/i18n/language-toggle'
@@ -24,6 +24,7 @@ type NavItem = {
   label: TranslationKey
   icon: LucideIcon
   end?: boolean
+  isActive?: (pathname: string) => boolean
 }
 
 const workerNavItems: NavItem[] = [
@@ -34,12 +35,19 @@ const workerNavItems: NavItem[] = [
 
 const businessNavItems: NavItem[] = [
   { to: '/business', label: 'nav.overview', icon: LayoutDashboard, end: true },
-  { to: '/business/openings', label: 'nav.jobOpenings', icon: BriefcaseBusiness, end: true },
+  {
+    to: '/business/openings',
+    label: 'nav.jobOpenings',
+    icon: BriefcaseBusiness,
+    isActive: (pathname) =>
+      pathname.startsWith('/business/openings') && pathname !== '/business/openings/new',
+  },
   { to: '/business/openings/new', label: 'nav.newOpening', icon: Plus },
 ]
 
 export function AppLayout() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const t = useT()
   const [user, setUser] = useState(getStoredUser)
   const navItems = user && hasUserRole(user.role, 'Business')
@@ -67,7 +75,7 @@ export function AppLayout() {
                   className={({ isActive }) =>
                     cn(
                       'focus-ring relative my-1 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 px-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground sm:px-4',
-                      isActive && 'bg-peach text-primary',
+                      (item.isActive?.(pathname) ?? isActive) && 'bg-peach text-primary',
                     )
                   }
                   end={item.end}
